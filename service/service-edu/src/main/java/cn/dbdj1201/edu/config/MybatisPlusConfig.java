@@ -23,4 +23,17 @@ public class MybatisPlusConfig {
         return new PaginationInterceptor();
     }
 
+//    @Bean
+//    public MybatisPlusInterceptor mybatisPlusInterceptor(){
+//        return  new MybatisPlusInterceptor();
+//    }
+//
+//    @Bean
+//    public PaginationInnerInterceptor paginationInterceptor() {
+//        PaginationInnerInterceptor paginationInnerInterceptor = new PaginationInnerInterceptor();
+//        paginationInnerInterceptor.setDbType(DbType.MYSQL);
+//        paginationInnerInterceptor.setDialect(new MySqlDialect());
+//        return paginationInnerInterceptor;
+//    }
+
 }
