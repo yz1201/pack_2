@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue3</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/test.js"></script>
+    <script src="../js/vue-router.min.js"></script>
+</head>
+
+<body>
+    <div id="test">
+        <!-- <Navbar></Navbar>
+        <p>asdasdasd</p>
+        <Text11></Text11> -->
+        <p>
+            <router-link to="/">首页</router-link>
+            <router-link to="/student">会员管理</router-link>
+            <router-link to="/teacher">讲师管理</router-link>
+        </p>
+
+        <router-view></router-view>
+    </div>
+</body>
+
+
+
+<script>
+    const welcome = { template: '<h1>welcome</h1>' };
+    const student = { template: '<h1>student list</h1>' };
+    const teacher = { template: '<h1>teacher list</h1>' };
+    const routes = [
+        { path: '/', redirect: 'welcome' },
+        { path: '/welcome', component: welcome },
+        { path: '/student', component: student },
+        { path: '/teacher', component: teacher }
+    ];
+    const router = new VueRouter({
+        routes
+    });
+    new Vue({
+        el: "#test",
+        data: {
+
+        },
+        router,
+        components: {
+            'Navbar': {
+                template: '<h1>hello component</h1>'
+            }
+
+        }
+    });
+</script>
+
+</html>

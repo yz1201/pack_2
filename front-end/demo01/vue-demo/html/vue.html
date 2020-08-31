@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUE</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- {{message}}
+
+        <h1 :title="title">{{content}}</h1>
+
+        <input type="text"></input>
+        <input type="text"></input> -->
+
+        <!-- <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p> -->
+
+        <button v-on:click="test">click1</button>
+        <button @click="test1">click2</button>
+    </div>
+</body>
+
+<script>
+
+    const APP = new Vue({
+        el: "#app",
+        data: {
+            // message: "hello vue" + new Date().toLocaleString(),
+            // content: "asdsadagd",
+            // title: 'root',
+            p1: { name: 'zzz', age: 15 }
+        },
+        methods: {
+            test() {
+                console.log(this.p1.name + '-' + this.p1.age);
+            },
+            test1(){
+                console.log("click1")
+            }
+        }
+
+    });
+
+</script>
+
+</html>

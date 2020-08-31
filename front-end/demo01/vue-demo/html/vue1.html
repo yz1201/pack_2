@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue1</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+    <!-- <div id="">
+
+    </div>
+    <ul id="example-1">
+        <li v-for="(item,index) in items" :key="item.index">
+            {{ item.message }} - {{index}}
+        </li>
+    </ul> -->
+
+    <!-- <ol id="example-1">
+        <li v-for="val in p1">
+            {{val}}
+        </li>
+    </ol> -->
+
+    <div id="example-1">
+        <!-- <span v-for="val in p1">
+            {{val}}&nbsp;&nbsp;
+        </span>
+
+        <div v-if="Math.random() > 0.5">
+            Now you see me
+        </div>
+        <div v-else>
+            Now you don't
+        </div> -->
+
+        <input type="checkbox" id="checkbox" v-model="checked">
+        <label for="checkbox">{{ checked }}</label>
+
+
+    </div>
+</body>
+<script>
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            items: [
+                { message: 'Foo' },
+                { message: 'Bar' }
+            ],
+            p1: { name: 'zzz', age: 15, gender: 'male' },
+            checked:true
+        }
+    })
+</script>
+
+</html>

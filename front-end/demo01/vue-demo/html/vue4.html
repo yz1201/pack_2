@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue4</title>
+    <script src="vue.js"></script>
+    <script src="../js/vue-router.min.js"></script>
+    <script src="../js/axios.min.js"></script>
+</head>
+<body>
+
+    <div id="vue4">
+
+        <ul>
+            <li v-for="(p) in persons" :key="p.id">
+                {{p}}
+            </li>
+        </ul>
+
+
+    </div>
+
+    <script>
+        new Vue({
+            el:'#vue4',
+            data:{
+                persons:[]
+            },
+            created(){
+                this.getData()
+            },
+            methods:{
+                save(){
+                    console.log("save sth");
+                },
+                getData(){
+                    axios.get('data.json')
+                    .then(({data})=>{
+                        console.log(data);
+                        this.persons =data;
+                    })
+                    .catch(error=>{
+                        
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+
+
+</html>

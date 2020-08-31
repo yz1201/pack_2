@@ -1,0 +1,35 @@
+<script>
+
+var a = [];
+for (var i = 0; i < 10; i++) {
+    console.log("i-a->"+i);
+  a[i] = function () {
+    console.log(i);
+  };
+}
+a[0](); // 10
+
+var b = [];
+for (let i = 0; i < 10; i++) {
+    console.log("i-b->"+i);
+  b[i] = function () {
+    console.log(i);
+  };
+}
+b[9](); // 6
+
+var tmp = 123;
+
+if (true) {
+  // TDZ开始
+  tmp = 'abc'; // ReferenceError
+  console.log(tmp); // ReferenceError
+
+//   let tmp; // TDZ结束
+//   console.log(tmp); // undefined
+
+//   tmp = 123;
+//   console.log(tmp); // 123
+}
+
+</script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue1</title>
+    <script src="./vue.js"></script>
+</head>
+
+<body>
+
+
+    <div id="example-1">
+        <table>
+            <th>
+            <td>pick</td>
+            <td>id</td>
+            <td>name</td>
+            <td>age</td>
+            <td>gender</td>
+            </th>
+
+            <tr v-for="item of persons" :key="item.id">
+                <td><input type="checkbox" :value="item.id" v-model="selected"></input></td>
+                <td>{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.age}}</td>
+                <td>{{item.gender}}</td>
+            </tr>
+        </table>
+
+        <p>{{selected}}</p>
+    </div>
+</body>
+<script>
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            items: [
+                { message: 'Foo' },
+                { message: 'Bar' }
+            ],
+            persons: [
+                { id: 1, name: 'zzz', age: 15, gender: 'male' },
+                { id: 2, name: 'yyy', age: 25, gender: 'female' },
+                { id: 3, name: 'ttt', age: 35, gender: 'none' }
+            ],
+            checked: true,
+            selected: []
+        }
+    })
+</script>
+
+</html>
