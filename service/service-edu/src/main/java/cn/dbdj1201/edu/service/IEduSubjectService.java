@@ -2,6 +2,7 @@ package cn.dbdj1201.edu.service;
 
 import cn.dbdj1201.edu.entity.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -13,4 +14,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IEduSubjectService extends IService<EduSubject> {
 
+    /**
+     * 添加课程分类
+     * @param file
+     */
+    void saveSubject(MultipartFile file, IEduSubjectService subjectService);
 }
