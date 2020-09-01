@@ -22,11 +22,13 @@ import '@/permission' // permission control
  *
  * Currently MockJs will be used in the production environment,
  * please remove it before going online ! ! !
+ * 
+ * mock test go to hell --yz1201
  */
-if (process.env.NODE_ENV === 'production') {
-  const { mockXHR } = require('../mock')
-  mockXHR()
-}
+// if (process.env.NODE_ENV === 'production') {
+//   const { mockXHR } = require('../mock')
+//   mockXHR()
+// }
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
