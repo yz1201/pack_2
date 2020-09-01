@@ -10,6 +10,7 @@
         <module name="service-vod" />
         <module name="service-edu" />
         <module name="common-utils" />
+        <module name="service-oss" />
         <module name="service-base" />
       </profile>
     </annotationProcessing>
