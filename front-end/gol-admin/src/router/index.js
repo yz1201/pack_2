@@ -49,9 +49,9 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '导航栏', icon: 'dashboard' }
+      meta: { title: 'dashboard', icon: 'dashboard' }
     }]
   },
 
@@ -60,19 +60,51 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: '案例', icon: 'el-icon-s-help' },
+    meta: { title: 'Example', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: '表格', icon: 'table' }
+        meta: { title: 'Table', icon: 'table' }
       },
       {
         path: 'tree',
         name: 'Tree',
         component: () => import('@/views/tree/index'),
-        meta: { title: '树形', icon: 'tree' }
+        meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
+  },
+//讲师模块路由
+  {
+    path: '/teacher',
+    component: Layout,
+    redirect: '/teacher/table',
+    name: 'Teacher',
+    meta: { title: '讲师管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'table',
+        name: '讲师列表',
+        component: () => import('@/views/edu/teacher/list'),
+        meta: { title: '讲师列表', icon: 'table' }
+      },
+      {
+        path: 'save',
+        name: '添加讲师',
+        component: () => import('@/views/edu/teacher/save'),
+        meta: { title: '添加讲师', icon: 'tree' }
+      },
+      {
+        path: 'edit/:id', //  占位符-> /:id   传参数  
+        name: '修改讲师',
+        component: () => import('@/views/edu/teacher/save'),
+        meta: {
+          title: '修改讲师',
+          icon: 'tree'
+        },
+        hidden: true //隐藏路由写法
       }
     ]
   },
@@ -85,7 +117,7 @@ export const constantRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: '表单', icon: 'form' }
+        meta: { title: 'Form', icon: 'form' }
       }
     ]
   },
@@ -96,7 +128,7 @@ export const constantRoutes = [
     redirect: '/nested/menu1',
     name: 'Nested',
     meta: {
-      title: '嵌套',
+      title: 'Nested',
       icon: 'nested'
     },
     children: [
@@ -104,7 +136,7 @@ export const constantRoutes = [
         path: 'menu1',
         component: () => import('@/views/nested/menu1/index'), // Parent router-view
         name: 'Menu1',
-        meta: { title: '菜单一' },
+        meta: { title: 'Menu1' },
         children: [
           {
             path: 'menu1-1',
@@ -144,7 +176,7 @@ export const constantRoutes = [
         path: 'menu2',
         component: () => import('@/views/nested/menu2/index'),
         name: 'Menu2',
-        meta: { title: '菜单二' }
+        meta: { title: 'menu2' }
       }
     ]
   },

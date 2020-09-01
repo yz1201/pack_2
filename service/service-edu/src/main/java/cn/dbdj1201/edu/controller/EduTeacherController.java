@@ -30,6 +30,7 @@ import java.util.List;
 @RequestMapping("/edu/teacher")
 @Api("后台讲师管理模块")
 @Slf4j
+@CrossOrigin
 public class EduTeacherController {
 
     @Autowired
@@ -69,7 +70,9 @@ public class EduTeacherController {
     @ApiOperation(value = "分页查询带条件")
     @PostMapping("pageTeacherByCondition/{currentPage}/{pageSize}")
     public R pageTeacherCondition(@PathVariable long currentPage, @PathVariable long pageSize,
-                                  @RequestBody(required = false) TeacherQuery teacherQuery) {  //@RequestBody(required = false)参数值可以为空
+                                  @RequestBody(required = false) TeacherQuery teacherQuery) {
+
+        log.info("input info - {} {} {}", currentPage, pageSize, teacherQuery);
 
         QueryWrapper<EduTeacher> queryWrapper = new QueryWrapper<>();
         /*
@@ -83,7 +86,7 @@ public class EduTeacherController {
             queryWrapper.like("name", name);
         }
 
-        if (level >= 0) {
+        if (level != null && level >= 0) {
             queryWrapper.eq("level", level);
         }
 
@@ -97,7 +100,7 @@ public class EduTeacherController {
         queryWrapper.orderByDesc("gmt_create");
 
         Page<EduTeacher> teacherPage = this.eduTeacherService.page(new Page<>(currentPage, pageSize), queryWrapper);
-        log.info("data-{}", teacherPage);
+        log.info("data-{}", teacherPage.getRecords());
         return R.success().data("total", teacherPage.getTotal()).data("records", teacherPage);
     }
 
