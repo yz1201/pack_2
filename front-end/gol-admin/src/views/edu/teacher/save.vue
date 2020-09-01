@@ -30,18 +30,20 @@
       </el-form-item>
 
       <!-- 讲师头像 -->
-      <!-- <el-form-item label="讲师头像">
-          <el-upload
-                     :show-file-list="true"
-                     :on-success="handleAvatarSuccess"
-                     :on-error="handleAvatarError"
-                     :before-upload="beforeAvatarUpload"
-                     class="avatar-uploader"
-                     :action="BASE_API+'/eduoss/fileoss'">
-              <img v-if="teacher.avatar" :src="teacher.avatar">
-              <i v-else class="el-icon-plus avatar-uploader-icon"/>
-          </el-upload>
-      </el-form-item>-->
+      <el-form-item label="讲师头像">
+        <pan-thumb :image="teacher.avatar" />
+        <el-button type="primary" icon="el-icon-upload" @click="imagecropperShow=true">更换头像</el-button>
+
+        <image-cropper
+          v-show="imagecropperShow"
+          :width="300"
+          :height="300"
+          :key="imagecropperKey"
+          :url="'http://localhost:40923/oss/avatarUpload'"
+          field="file"
+          @close="close"
+          @crop-upload-success="cropSuccess" />
+      </el-form-item>
       <!-- <span style="margin-left: 7%;font-size: 15px; font-weight: 400;">*点击图片框修改头像*</span> -->
       <br />
       <br />
@@ -106,6 +108,19 @@ export default {
     handleAvatarError() {
       this.$message.error("上传失败! （http失败）");
     },
+    //头像上传弹出框的关闭
+    close() {
+      this.imagecropperShow = false
+      this.imagecropperKey++
+    },
+    //头像上传成功
+    cropSuccess(resp) {
+      console.log("upload successful "+ resp.url)
+      this.imagecropperShow = false
+      this.teacher.avatar = resp.url
+      this.imagecropperKey++
+
+    },
 
     // 上传校验
     beforeAvatarUpload(file) {
@@ -160,7 +175,7 @@ export default {
     saveOrUpdate() {
       //判断修改或添加 teacher是否有id
 
-    //   console.log("调用save服务");
+      //   console.log("调用save服务");
       if (!this.teacher.id) {
         //添加
         this.saveTeacher();
