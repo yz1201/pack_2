@@ -39,7 +39,7 @@
           :width="300"
           :height="300"
           :key="imagecropperKey"
-          :url="'http://localhost:40923/oss/avatarUpload'"
+          :url="BASE_API+'/oss/avatarUpload'"
           field="file"
           @close="close"
           @crop-upload-success="cropSuccess" />
@@ -77,7 +77,7 @@ export default {
       }, //v-model双向绑定
       imagecropperShow: false, //上传弹框组件是否显示
       imagecropperKey: 0, //上传组件唯一标识
-      BASE_API: process.env.BASE_API, //获取dev.env.js里面地址
+      BASE_API: process.env.VUE_APP_BASE_API, //获取dev.env.js里面地址
       saveBtnDisabled: false, //保存按钮是否禁用
     };
   },
@@ -119,7 +119,6 @@ export default {
       this.imagecropperShow = false
       this.teacher.avatar = resp.url
       this.imagecropperKey++
-
     },
 
     // 上传校验

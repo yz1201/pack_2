@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="service-base" />
         <module name="service-vod" />
         <module name="service-edu" />
         <module name="common-utils" />
-        <module name="service-base" />
+        <module name="service-oss" />
       </profile>
     </annotationProcessing>
   </component>

@@ -27,6 +27,6 @@ public class EduLoginController {
     @ApiOperation("获取用户信息")
     @GetMapping("/info")
     public R getInfo(){
-        return R.success().data("name","dbdj1201").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        return R.success().data("name","dbdj1201").data("avatar","https://dbdj1201-gol.oss-cn-beijing.aliyuncs.com/2020/09/02/6111b862a8574b30a8b315e0d9c1ddf2mario.jpg");
     }
 }
