@@ -8,6 +8,7 @@ import cn.dbdj1201.edu.mapper.EduCourseMapper;
 import cn.dbdj1201.edu.service.IEduCourseDescriptionService;
 import cn.dbdj1201.edu.service.IEduCourseService;
 import cn.hutool.core.bean.BeanUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,8 @@ import org.springframework.stereotype.Service;
  * @author dbdj1201
  * @since 2020-09-02
  */
-@Service
 @Slf4j
+@Service
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements IEduCourseService {
 
     @Autowired
@@ -59,9 +60,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     @Override
     public CourseInfoVo getCourseInfo(String courseId) {
         CourseInfoVo courseInfoVo = new CourseInfoVo();
-        EduCourse eduCourse = this.getById(courseId);
+        EduCourse eduCourse = this.baseMapper.selectById(courseId);
         log.info("根据课程id查询全部课程信息-{}", eduCourse);
         BeanUtil.copyProperties(eduCourse, courseInfoVo);
+
+        EduCourseDescription description = this.descriptionService.getById(courseId);
+        courseInfoVo.setDescription(description.getDescription());
         log.info("包装后端课程信息vo - {}", courseInfoVo);
         return courseInfoVo;
     }

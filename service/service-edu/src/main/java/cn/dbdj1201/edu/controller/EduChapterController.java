@@ -38,6 +38,10 @@ public class EduChapterController {
         return R.success().data("chapterVos", chapterVos);
     }
 
+    @GetMapping("/findAll")
+    public R findAll() {
+        return R.success().data("list", this.chapterService.list());
+    }
 
 
 }

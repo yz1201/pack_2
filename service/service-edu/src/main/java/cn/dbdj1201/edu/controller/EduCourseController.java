@@ -2,9 +2,11 @@ package cn.dbdj1201.edu.controller;
 
 
 import cn.dbdj1201.common.utils.result.R;
+import cn.dbdj1201.edu.entity.EduCourse;
 import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
 import cn.dbdj1201.edu.service.IEduCourseService;
 import cn.dbdj1201.edu.service.IEduTeacherService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -49,8 +51,22 @@ public class EduCourseController {
     @ApiOperation("根据课程id获取相应课程信息")
     @GetMapping("/getCourseInfoById/{courseId}")
     public R getCourseInfoById(@PathVariable("courseId") String courseId) {
-        log.info("调用查询课程信息业务,课程id -{}", courseId);
+        log.info("调用查询课程信息业务,课程id -{}-", courseId);
         CourseInfoVo courseInfoVo = this.courseService.getCourseInfo(courseId);
         return R.success().data("courseInfoVo", courseInfoVo);
+    }
+
+    @ApiOperation("根据课程id获取相应课程全部信息")
+    @GetMapping("/getCourseById/{courseId}")
+    public R getCourseById(@PathVariable("courseId") String courseId) {
+        log.info("调用查询课程信息业务,课程id -{}-", courseId);
+        EduCourse eduCourse = this.courseService.getById(courseId);
+        log.info("调用查询课程信息业务,result -{}-", eduCourse);
+        return R.success().data("eduCourse", eduCourse);
+    }
+
+    @GetMapping("findAll")
+    public R findAll() {
+        return R.success().data("list", this.courseService.getBaseMapper().selectList(null));
     }
 }
