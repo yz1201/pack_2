@@ -69,4 +69,23 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         log.info("包装后端课程信息vo - {}", courseInfoVo);
         return courseInfoVo;
     }
+
+    @Override
+    public void updateCourseInfo(CourseInfoVo courseInfoVo) {
+
+        EduCourse eduCourse = new EduCourse();
+        BeanUtil.copyProperties(courseInfoVo, eduCourse);
+        log.info("parsed edu course - {}", eduCourse);
+        boolean updateCourse = this.updateById(eduCourse);
+        if (!updateCourse) {
+            log.error("更新课程失败");
+            throw new GOLException(20001, "更新课程？没门，不对，好像是你有问题。");
+        }
+
+
+        EduCourseDescription description = new EduCourseDescription();
+        BeanUtil.copyProperties(courseInfoVo, description);
+        log.info("parsed edu course description- {}", description);
+        this.descriptionService.updateById(description);
+    }
 }

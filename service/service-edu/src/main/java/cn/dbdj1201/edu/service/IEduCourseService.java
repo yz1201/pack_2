@@ -27,4 +27,6 @@ public interface IEduCourseService extends IService<EduCourse> {
      * @return
      */
     CourseInfoVo getCourseInfo(String courseId);
+
+    void updateCourseInfo(CourseInfoVo courseInfoVo);
 }

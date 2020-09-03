@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 前端控制器
@@ -69,4 +71,15 @@ public class EduCourseController {
     public R findAll() {
         return R.success().data("list", this.courseService.getBaseMapper().selectList(null));
     }
+
+
+    @PostMapping("updateCourseInfo")
+    @ApiOperation("修改课程信息")
+    public R updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
+        log.info("update courseInfo-{}", courseInfoVo);
+        this.courseService.updateCourseInfo(courseInfoVo);
+        return R.success();
+    }
+
+
 }
