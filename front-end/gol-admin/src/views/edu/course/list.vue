@@ -100,12 +100,6 @@
   //引入调用course.js文件
   import courseApi from '@/api/edu/course.js'
 
-  //引入调用teacher.js文件
-  import teacherApi from '@/api/edu/teacher.js'
-
-  //引入调用subject.js文件
-  import subjectApi from '@/api/edu/subject.js'
-
   export default {
     //写核心代码的位置
     data() { //定义变量和初始值
@@ -122,8 +116,6 @@
     created() { //页面渲染之前执行，调用method定义的方法
       //调用
       this.getList()
-      // 获取讲师列表
-      this.initTeacherList()
     },
     methods: { //创建具体的方法，调用course.js定义的方法
       getList(page = 1) { //讲师列表的方法
@@ -137,13 +129,6 @@
           .catch(error => { //请求失败
             console.log(error)
           })
-      },
-
-      // 获取讲师列表
-      initTeacherList() {
-        teacherApi.listTeacher().then(response => {
-          this.teacherList = response.data.items
-        })
       },
 
       //清空按钮的方法

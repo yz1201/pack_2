@@ -1,0 +1,6 @@
+server:
+  port: 40997
+
+spring:
+  application:
+    name: service-vod

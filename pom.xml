@@ -40,8 +40,8 @@
         <aliyun.oss.version>3.9.1</aliyun.oss.version>
         <aliyun-java-sdk-core.version>4.3.3</aliyun-java-sdk-core.version>
         <aliyun-java-sdk-vod.version>2.15.2</aliyun-java-sdk-vod.version>
-        <aliyun-java-vod-upload.version>1.4.11</aliyun-java-vod-upload.version>
-        <aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>
+        <aliyun-java-vod-upload.version>1.4.12</aliyun-java-vod-upload.version>
+        <aliyun-sdk-vod-upload.version>1.4.12</aliyun-sdk-vod-upload.version>
 
         <jodatime.version>2.10.1</jodatime.version>
         <poi.version>4.1.2</poi.version>

@@ -1,7 +1,9 @@
 package cn.dbdj1201.edu.controller;
 
 
+import cn.dbdj1201.common.service.exception.GOLException;
 import cn.dbdj1201.common.utils.result.R;
+import cn.dbdj1201.edu.entity.EduChapter;
 import cn.dbdj1201.edu.entity.chapter.ChapterVo;
 import cn.dbdj1201.edu.service.IEduChapterService;
 import io.swagger.annotations.Api;
@@ -43,5 +45,42 @@ public class EduChapterController {
         return R.success().data("list", this.chapterService.list());
     }
 
+    @ApiOperation("添加课程章节")
+    @PostMapping("/addChapter")
+    public R addChapter(@RequestBody EduChapter eduChapter) {
+        log.info("add edu chapter-{}", eduChapter);
+        this.chapterService.save(eduChapter);
+        return R.success();
+    }
 
+    @ApiOperation("根据id查询章节信息")
+    @GetMapping("/getChapterInfo/{chapterId}")
+    public R getChapterInfoById(@PathVariable String chapterId) {
+        log.info("find edu chapter-{}", chapterId);
+        return R.success().data("chapter", this.chapterService.getById(chapterId));
+    }
+
+
+    @ApiOperation("修改课程章节")
+    @PostMapping("/updateChapterById")
+    public R updateChapterById(@RequestBody EduChapter eduChapter) {
+        log.info("update edu chapter-{}", eduChapter);
+        boolean update = this.chapterService.updateById(eduChapter);
+        if (!update) {
+            log.error("修改章节失败了(●ˇ∀ˇ●)");
+            throw new GOLException(20001, "修改章节失败");
+        }
+        return R.success();
+    }
+
+    @ApiOperation("删除章节")
+    @DeleteMapping("{chapterId}")
+    public R deleteChapterById(@PathVariable String chapterId) {
+        log.info("edu chapter delete - {}", chapterId);
+        boolean deleted = this.chapterService.deleteAllChapterAndVideos(chapterId);
+        if (!deleted) {
+            return R.error().data("usefulMsg", "该章节下仍有内容，请先删除这部分内容");
+        }
+        return R.success().data("usefulMsg", "章节删除成功");
+    }
 }

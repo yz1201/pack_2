@@ -9,7 +9,7 @@ spring:
 #    driver-class-name: com.mysql.cj.jdbc.Driver
 #    url: jdbc:mysql:///db_gol?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://localhost:3306/db_gol?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT&allowPublicKeyRetrieval=true
+    url: jdbc:p6spy:mysql://localhost:3306/db_gol?useSSL=false&useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
     username: root
     password: root
   devtools:

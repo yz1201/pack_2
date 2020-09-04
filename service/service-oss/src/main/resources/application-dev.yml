@@ -13,8 +13,8 @@ spring:
 aliyun:
   oss:
     file:
-      key-secret: 
-      key-id: 
+      key-id:
+      key-secret:
       bucket-name: dbdj1201-gol
       endpoint: oss-cn-beijing.aliyuncs.com
 #multipart.maxFileSize：

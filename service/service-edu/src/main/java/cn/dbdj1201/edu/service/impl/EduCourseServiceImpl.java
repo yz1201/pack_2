@@ -1,12 +1,17 @@
 package cn.dbdj1201.edu.service.impl;
 
 import cn.dbdj1201.common.service.exception.GOLException;
+import cn.dbdj1201.edu.entity.EduChapter;
 import cn.dbdj1201.edu.entity.EduCourse;
 import cn.dbdj1201.edu.entity.EduCourseDescription;
+import cn.dbdj1201.edu.entity.EduVideo;
 import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
+import cn.dbdj1201.edu.entity.vo.CoursePublishVo;
 import cn.dbdj1201.edu.mapper.EduCourseMapper;
+import cn.dbdj1201.edu.service.IEduChapterService;
 import cn.dbdj1201.edu.service.IEduCourseDescriptionService;
 import cn.dbdj1201.edu.service.IEduCourseService;
+import cn.dbdj1201.edu.service.IEduVideoService;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -28,6 +33,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private IEduCourseDescriptionService descriptionService;
+
+    @Autowired
+    private IEduVideoService videoService;
+
+    @Autowired
+    private IEduChapterService chapterService;
 
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
@@ -87,5 +98,36 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         BeanUtil.copyProperties(courseInfoVo, description);
         log.info("parsed edu course description- {}", description);
         this.descriptionService.updateById(description);
+    }
+
+    @Override
+    public CoursePublishVo getPublishedCourse(String courseId) {
+        return this.baseMapper.getPublishedCourse(courseId);
+    }
+
+    @Override
+    public void removeCourseById(String courseId) {
+        /*
+        根据课程id删除课程，要删除课程，要删除课程下的所有章节，要删除每个章节下的所有小节，要删除小节下的每个视频
+         */
+
+        //删除小节
+        boolean remove = this.videoService.removeVideoByCourseId(courseId);
+        if (!remove) {
+            throw new GOLException(20001, "删除课程下所有章节的全部小节失败");
+        }
+
+        //删除章节
+        this.chapterService.removeChapterByCourseId(courseId);
+
+        //删除课程描述
+        this.descriptionService.removeById(courseId);
+
+        //删除课程
+        boolean deleteFlag = this.removeById(courseId);
+        if (!deleteFlag) {
+            log.error("删除课程信息失败");
+            throw new GOLException(20001, "删除课程信息失败");
+        }
     }
 }

@@ -56,12 +56,12 @@ export default {
     getCoursePublishInfo(){
       courseApi.getPublishCourseInfo(this.courseId)
         .then(response => {
-          this.publishCourseInfo = response.data.publishCourse
+          this.publishCourseInfo = response.data.coursePublishVo
         })
     },
     previous() {
       console.log('previous')
-      this.$router.push({ path: '/course/chapter/1' })
+      this.$router.push({ path: '/course/chapter/'+this.courseId })
     },
 
     //课程最终发布按钮

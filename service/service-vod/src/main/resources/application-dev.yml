@@ -1,0 +1,12 @@
+server:
+  port: 40997
+
+spring:
+  application:
+    name: service-vod
+
+aliyun:
+  vod:
+    file:
+      key-id:
+      key-secret:

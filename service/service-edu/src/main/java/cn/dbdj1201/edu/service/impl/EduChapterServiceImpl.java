@@ -1,5 +1,6 @@
 package cn.dbdj1201.edu.service.impl;
 
+import cn.dbdj1201.common.service.exception.GOLException;
 import cn.dbdj1201.edu.entity.EduChapter;
 import cn.dbdj1201.edu.entity.EduVideo;
 import cn.dbdj1201.edu.entity.chapter.ChapterVo;
@@ -8,6 +9,7 @@ import cn.dbdj1201.edu.mapper.EduChapterMapper;
 import cn.dbdj1201.edu.service.IEduChapterService;
 import cn.dbdj1201.edu.service.IEduVideoService;
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -63,5 +65,43 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         });
 
         return chapterVos;
+    }
+
+    @Override
+    public void addChapterAndVideos(EduChapter eduChapter) {
+        boolean save = this.save(eduChapter);
+        if (!save) {
+            log.error("添加章节失败");
+            throw new GOLException(20001, "添加章节有点问题");
+        }
+    }
+
+    @Override
+    public boolean deleteAllChapterAndVideos(String chapterId) {
+
+        if (this.getById(chapterId) == null) {
+            log.error("对应章节已被删除，不存在");
+            throw new GOLException(20001, "对应章节压根不存在？w(ﾟДﾟ)w");
+        }
+
+        /*
+        如果章节下边的小节为空，可以随便删除，如果不为空，禁止直接删除该章节
+         */
+        //直接查条数就好了，查数据有点蠢
+        //List<EduVideo> eduVideos = this.videoService.list(new QueryWrapper<EduVideo>().eq("chapter_id", chapterId));
+
+        int videoCount = this.videoService.count(new QueryWrapper<EduVideo>().eq("chapter_id", chapterId));
+        if (videoCount > 0) {
+            log.info("该章节下仍有内存，不能删除");
+            return false;
+        }
+        int deleteById = this.baseMapper.deleteById(chapterId);
+        return deleteById > 0;
+    }
+
+    @Override
+    public void removeChapterByCourseId(String courseId) {
+        log.info("根据课程id删除下边所有章节-{}", courseId);
+        this.remove(new QueryWrapper<EduChapter>().eq("course_id", courseId));
     }
 }

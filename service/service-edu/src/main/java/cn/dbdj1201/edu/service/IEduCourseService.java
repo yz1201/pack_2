@@ -2,6 +2,7 @@ package cn.dbdj1201.edu.service;
 
 import cn.dbdj1201.edu.entity.EduCourse;
 import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
+import cn.dbdj1201.edu.entity.vo.CoursePublishVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -16,6 +17,7 @@ public interface IEduCourseService extends IService<EduCourse> {
 
     /**
      * 保存前端来的课程信息
+     *
      * @param courseInfoVo
      * @return
      */
@@ -23,10 +25,26 @@ public interface IEduCourseService extends IService<EduCourse> {
 
     /**
      * 根据课程id查询课程信息
+     *
      * @param courseId
      * @return
      */
     CourseInfoVo getCourseInfo(String courseId);
 
     void updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    /**
+     * 根据课程id查询要发布的课程信息
+     *
+     * @param courseId
+     * @return
+     */
+    CoursePublishVo getPublishedCourse(String courseId);
+
+    /**
+     * 根据课程id删除课程，要删除课程，要删除课程下的所有章节，要删除每个章节下的所有小节，要删除小节下的每个视频，从内层删除
+     *
+     * @param courseId
+     */
+    void removeCourseById(String courseId);
 }
