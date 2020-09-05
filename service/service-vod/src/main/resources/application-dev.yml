@@ -4,9 +4,16 @@ server:
 spring:
   application:
     name: service-vod
+  servlet:
+    multipart:
+      max-file-size: 20480000
+      max-request-size: 20480000
+  cloud:
+    nacos:
+      server-addr: localhost:8848
 
 aliyun:
   vod:
     file:
-      key-id:
-      key-secret:
+      key-id: LTAI4G84wKGBXUDgHKFHwzmm
+      key-secret: 9Lyw4lKFohUqUvJIDyA4FVMmMfB6Dv

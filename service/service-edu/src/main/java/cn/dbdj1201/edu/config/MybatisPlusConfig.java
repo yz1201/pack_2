@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Configuration;
  * @Author: dbdj1201
  * @Date: 2020-08-29 18:24
  */
-@Configuration
-@MapperScan("cn.dbdj1201.edu.mapper")
+//@Configuration
+//@MapperScan("cn.dbdj1201.edu.mapper")
 public class MybatisPlusConfig {
 
     /**

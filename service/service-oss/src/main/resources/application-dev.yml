@@ -9,14 +9,14 @@ spring:
     multipart:
       max-file-size: 2048000
       max-request-size: 2048000
+  cloud:
+    nacos:
+      server-addr: localhost:8848
 #阿里云oss
 aliyun:
   oss:
     file:
-      key-id:
-      key-secret:
+      key-id: LTAI4G9EGm9Gb79hKNQtDw17
+      key-secret: QodWop8jV4JpRsztFWzKL05R8ej8zj
       bucket-name: dbdj1201-gol
       endpoint: oss-cn-beijing.aliyuncs.com
-#multipart.maxFileSize：
-#  128KB
-#multipart.maxRequestSize=128KB

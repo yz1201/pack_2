@@ -11,7 +11,7 @@ export default {
 
     deleteVideo(videoId){
         return request({
-            url:`/edu/video/${videoId}`,
+            url:`/edu/video/delete/${videoId}`,
             method:'delete'
         })
     },
@@ -28,6 +28,13 @@ export default {
         return request({
             url:`/edu/video/getVideoById/${id}`,
             method:'get'
+        })
+    },
+
+    deleteAliVod(videoSourceId){
+        return request({
+            url:`/vod/video/delete/${videoSourceId}`,
+            method:'delete'
         })
     },
 }

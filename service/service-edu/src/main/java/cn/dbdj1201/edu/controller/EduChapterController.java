@@ -68,7 +68,7 @@ public class EduChapterController {
         boolean update = this.chapterService.updateById(eduChapter);
         if (!update) {
             log.error("修改章节失败了(●ˇ∀ˇ●)");
-            throw new GOLException(20001, "修改章节失败");
+            return R.error().message("修改章节失败了(●ˇ∀ˇ●)");
         }
         return R.success();
     }
@@ -79,8 +79,8 @@ public class EduChapterController {
         log.info("edu chapter delete - {}", chapterId);
         boolean deleted = this.chapterService.deleteAllChapterAndVideos(chapterId);
         if (!deleted) {
-            return R.error().data("usefulMsg", "该章节下仍有内容，请先删除这部分内容");
+            return R.error().message("该章节下仍有内容，请先删除这部分内容");
         }
-        return R.success().data("usefulMsg", "章节删除成功");
+        return R.success();
     }
 }

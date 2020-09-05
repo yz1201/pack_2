@@ -94,7 +94,7 @@
             :before-remove="beforeVodRemove"
             :on-exceed="handleUploadExceed"
             :file-list="fileList"
-            :action="BASE_API+'/eduvod/video/uploadAlyVideo'"
+            :action="BASE_API+'/vod/video/uploadAliVideo'"
             :limit="1"
             class="upload-demo"
           >
@@ -154,7 +154,7 @@ export default {
       dialogChapterFormVisible: false, //章节弹框
       dialogVideoFormVisible: false, //小节弹框
       fileList: [], //上传文件列表
-      BASE_API: process.env.BASE_API, // 接口API地址
+      BASE_API: process.env.VUE_APP_BASE_API, // 接口API地址
       uploadBtnDisabled: false, //上传按钮,
       chpaterTitle:"添加章节",
     };
@@ -297,7 +297,7 @@ export default {
     //删除小节中的视频 点击确定调用的方法
     handleVodRemove() {
       //调用接口的删除视频的方法
-      videoApi.deleteAlyVod(this.video.videoSourceId).then((response) => {
+      videoApi.deleteAliVod(this.video.videoSourceId).then((response) => {
         //提示信息
         this.$message({
           type: "success",

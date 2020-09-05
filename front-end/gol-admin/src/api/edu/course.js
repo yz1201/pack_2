@@ -56,4 +56,11 @@ export default {
         })
     },
 
+    deleteCourseById(courseId){
+        return request({
+            url: `/edu/course/delete/${courseId}`,
+            method: 'post',
+        })
+    },
+
 }

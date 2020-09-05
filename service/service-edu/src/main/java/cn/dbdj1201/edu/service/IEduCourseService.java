@@ -5,6 +5,8 @@ import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
 import cn.dbdj1201.edu.entity.vo.CoursePublishVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务类
@@ -47,4 +49,11 @@ public interface IEduCourseService extends IService<EduCourse> {
      * @param courseId
      */
     void removeCourseById(String courseId);
+
+    /**
+     * 获取排名前八的课程，按id降序之后，前八的。
+     * @return
+     */
+    List<EduCourse> getHotCourses();
+
 }

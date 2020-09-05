@@ -8,4 +8,8 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface IVodService {
     String uploadAliVideo(MultipartFile file);
+
+    void deleteVideoByVideoId(String videoId);
+
+    void deleteVideoByVideoIds(String[] ids);
 }

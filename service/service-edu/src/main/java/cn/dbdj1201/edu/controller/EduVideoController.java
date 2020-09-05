@@ -34,16 +34,20 @@ public class EduVideoController {
     public R addVideo(@RequestBody EduVideo eduVideo) {
         log.info("添加章节的小节-{}", eduVideo);
         this.videoService.save(eduVideo);
-        return R.success();
+        return R.success().message("添加小节成功");
     }
 
     //删除小节,同时删除视频
     @ApiOperation("删除小节")
-    @DeleteMapping("{videoId}")
+    @DeleteMapping("/delete/{videoId}")
     public R deleteVideoById(@PathVariable String videoId) {
+        //此处videoId只是小节的id，并不是阿里云的videoId，不要混淆了
         log.info("删除章节的小节-{}", videoId);
-        this.videoService.removeById(videoId);
-        return R.success();
+        boolean flag = this.videoService.removeVideoById(videoId);
+        if (flag) {
+            return R.success().message("删除小节成功");
+        }
+        return R.error().message("删除小节失败");
     }
 
     //修改小节

@@ -19,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务实现类
@@ -112,7 +114,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
          */
 
         //删除小节
-        boolean remove = this.videoService.removeVideoByCourseId(courseId);
+        boolean remove = this.videoService.removeVideosByCourseId(courseId);
         if (!remove) {
             throw new GOLException(20001, "删除课程下所有章节的全部小节失败");
         }
@@ -129,5 +131,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             log.error("删除课程信息失败");
             throw new GOLException(20001, "删除课程信息失败");
         }
+    }
+
+    @Override
+    public List<EduCourse> getHotCourses() {
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+        queryWrapper.orderByDesc("id");
+        queryWrapper.last("limit 8");
+        return this.list(queryWrapper);
     }
 }
