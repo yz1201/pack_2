@@ -1,0 +1,11 @@
+server:
+  port: 40886
+spring:
+  application:
+    name: service-msm
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+
