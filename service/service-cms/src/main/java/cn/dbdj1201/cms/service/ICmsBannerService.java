@@ -17,7 +17,16 @@ public interface ICmsBannerService extends IService<CmsBanner> {
 
     /**
      * 获取所有banner图片
+     *
      * @return
      */
     List<CmsBanner> getAllBanners();
+
+    void removeBannerById(String id);
+
+    CmsBanner getBannerById(String id);
+
+    CmsBanner updateBannerById(CmsBanner banner);
+
+    CmsBanner saveBanner(CmsBanner banner);
 }

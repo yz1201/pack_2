@@ -16,7 +16,7 @@ spring:
 aliyun:
   oss:
     file:
-      key-id: LTAI4G9EGm9Gb79hKNQtDw17
-      key-secret: QodWop8jV4JpRsztFWzKL05R8ej8zj
+      key-id:
+      key-secret:
       bucket-name: dbdj1201-gol
       endpoint: oss-cn-beijing.aliyuncs.com

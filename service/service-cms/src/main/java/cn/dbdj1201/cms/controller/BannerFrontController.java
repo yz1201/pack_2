@@ -34,11 +34,11 @@ public class BannerFrontController {
     @Autowired
     private ICmsBannerService bannerService;
 
-    @Cacheable(value = "banners",key = "cmsBanners")
+
     @ApiOperation("获取所有banner")
     @GetMapping("/getAll")
-    public List<CmsBanner> getAllBanner() {
-        return this.bannerService.getAllBanners();
+    public R getAllBanner() {
+        return R.success().data("items", this.bannerService.getAllBanners());
     }
 
 }

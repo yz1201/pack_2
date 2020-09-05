@@ -44,44 +44,29 @@ public class BannerAdminController {
     @ApiOperation("添加banner")
     @PostMapping("/addBanner")
     public R addBanner(@RequestBody CmsBanner banner) {
-        boolean save = this.bannerService.save(banner);
-        if (save) {
-            return R.success().message("添加品牌图片成功");
-        } else {
-            return R.error().message("添加品牌图片失败");
-        }
-
+        this.bannerService.saveBanner(banner);
+        return R.success();
     }
 
     @ApiOperation("修改banner")
     @PostMapping("/updateBanner")
     public R updateBannerById(@RequestBody CmsBanner banner) {
-        boolean save = this.bannerService.updateById(banner);
-        if (save) {
-            return R.success().message("修改品牌图片成功");
-        } else {
-            return R.error().message("修改品牌图片失败");
-        }
-
+        this.bannerService.updateBannerById(banner);
+        return R.success();
     }
 
 
     @ApiOperation("删除banner")
     @PostMapping("/remove/{id}")
     public R removeBannerById(@PathVariable("id") String id) {
-        boolean save = this.bannerService.removeById(id);
-        if (save) {
-            return R.success().message("删除品牌图片成功");
-        } else {
-            return R.error().message("删除品牌图片失败");
-        }
-
+        this.bannerService.removeBannerById(id);
+        return R.success();
     }
 
     @ApiOperation("获取banner")
     @PostMapping("/getBanner/{id}")
     public R getBannerById(@PathVariable("id") String id) {
-        CmsBanner cmsBanner = this.bannerService.getById(id);
+        CmsBanner cmsBanner = this.bannerService.getBannerById(id);
         return R.success().data("cmsBanner", cmsBanner);
     }
 
