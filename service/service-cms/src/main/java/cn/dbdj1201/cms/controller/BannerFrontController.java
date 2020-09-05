@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,12 +34,11 @@ public class BannerFrontController {
     @Autowired
     private ICmsBannerService bannerService;
 
+    @Cacheable(value = "banners",key = "cmsBanners")
     @ApiOperation("获取所有banner")
     @GetMapping("/getAll")
-    public R getAllBanner() {
-        List<CmsBanner> banners = this.bannerService.getAllBanners();
-        return R.success().data("items", banners);
+    public List<CmsBanner> getAllBanner() {
+        return this.bannerService.getAllBanners();
     }
-
 
 }
