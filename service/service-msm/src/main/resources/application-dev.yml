@@ -7,5 +7,23 @@ spring:
     active: dev
   cloud:
     nacos:
-      server-addr: localhost:8848
-
+      server-addr: 47.94.4.93:8848
+  #redis config
+  redis:
+    host: 47.94.4.93
+    port: 6379
+    database: 0
+    timeout: 1800000
+    #redis新的连接池
+    lettuce:
+      pool:
+        max-active: 20
+        max-wait: 1
+        max-idle: 8
+        min-idle: 0
+#msm模块的一些公共参数
+msm:
+  key-head: DBDJ1201
+  key-mid-name: MSM
+  ali-key: LTAI4G84wKGBXUDgHKFHwzmm
+  ali-secret: 9Lyw4lKFohUqUvJIDyA4FVMmMfB6Dv

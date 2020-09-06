@@ -46,7 +46,7 @@
             </li>
             <li v-if="loginInfo.id" id="is-login-two" class="h-r-user">
               <a href="/ucenter" title>
-                <img :src="loginInfo.avatar" width="30" height="30" class="vam picImg" alt>
+                <img :src="loginInfo.avatar" width="24" height="24" class="vam picImg" alt>
                 <span id="userName" class="vam disIb">{{ loginInfo.nickname }}</span>
               </a>
               <a href="javascript:void(0);" title="退出" @click="logout()" class="ml5">退出</a>
@@ -169,7 +169,7 @@
       //从cookie中获取用户信息
       showInfoFromCookie() {
         //从cookie中获取用户信息
-        var userStr = cookie.get("MindSchool_ucenter")
+        var userStr = cookie.get("GOL_UCENTER")
         //userStr是字符串   需要转换为json对象
         if (userStr) {
           this.loginInfo = JSON.parse(userStr)
@@ -183,8 +183,8 @@
 
       //退出  cookie清空
       logout(){
-        cookie.set('MindSchool_ucenter', "", {domain: 'localhost'})
-        cookie.set('MindSchool_token', "", {domain: 'localhost'})
+        cookie.set('GOL_UCENTER', "", {domain: 'localhost'})
+        cookie.set('GOL_TOKEN', "", {domain: 'localhost'})
         //回首页
         window.location.href = "/"
       },
@@ -192,13 +192,13 @@
       //微信登录显示的方法
       wxLogin() {
         //把token值放到cookie里面
-        cookie.set('MindSchool_token',this.token,{domain: 'localhost'})
-        cookie.set('MindSchool_ucenter','',{domain: 'localhost'})
+        cookie.set('GOL_TOKEN',this.token,{domain: 'localhost'})
+        cookie.set('GOL_UCENTER','',{domain: 'localhost'})
         //调用接口，根据token值获取用户信息
         loginApi.getLoginMemberInfo()
           .then(response => {
              this.loginInfo = response.data.data.userInfo
-             cookie.set('MindSchool_ucenter',this.loginInfo,{domain: 'localhost'})
+             cookie.set('GOL_UCENTER',this.loginInfo,{domain: 'localhost'})
           })
       },
     }

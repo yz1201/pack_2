@@ -23,15 +23,20 @@
           <!-- /无数据提示 结束-->
           <article class="i-teacher-list" v-if="data.total>0">
             <ul class="of">
-              <li v-for="teacher in data.items" :key="teacher.id">
+              <li v-for="teacher in data.records" :key="teacher.id">
                 <section class="i-teach-wrap">
                   <div class="i-teach-pic">
                     <a :href="'/teacher/'+teacher.id" :title="teacher.name" target="_blank">
-                      <img :src="teacher.avatar" :alt="teacher.name">
+                      <img :src="teacher.avatar" :alt="teacher.name" />
                     </a>
                   </div>
                   <div class="mt10 hLh30 txtOf tac">
-                    <a :href="'/teacher/'+teacher.id" :title="teacher.name" target="_blank" class="fsize18 c-666">{{teacher.name}}</a>
+                    <a
+                      :href="'/teacher/'+teacher.id"
+                      :title="teacher.name"
+                      target="_blank"
+                      class="fsize18 c-666"
+                    >{{teacher.name}}</a>
                   </div>
                   <div class="hLh30 txtOf tac">
                     <span class="fsize14 c-999">{{teacher.intro}}</span>
@@ -48,17 +53,43 @@
         <!-- 公共分页 开始 -->
         <div>
           <div class="paging">
-            <!-- undisable这个class是否存在，取决于数据属性hasPrevious -->
-            <a :class="{undisable: !data.hasPrevious}" href="#" title="首页" @click.prevent="gotoPage(1)">首页</a>
+            <!-- undisable这个class是否存在，理解成禁用，取决于数据属性hasPrevious -->
+            <a
+              :class="{undisable: !data.hasPrevious}"
+              href="#"
+              title="首页"
+              @click.prevent="gotoPage(1)"
+            >首页</a>
 
-            <a :class="{undisable: !data.hasPrevious}" href="#" title="前一页" @click.prevent="gotoPage(data.current-1)">&lt;</a>
+            <a
+              :class="{undisable: !data.hasPrevious}"
+              href="#"
+              title="前一页"
+              @click.prevent="gotoPage(data.current-1)"
+            >&lt;</a>
 
-            <a v-for="page in data.pages" :key="page" :class="{current: data.current == page, undisable: data.current == page}"
-              :title="'第'+page+'页'" href="#" @click.prevent="gotoPage(page)">{{ page }}</a>
+            <a
+              v-for="page in data.pages"
+              :key="page"
+              :class="{current: data.current == page, undisable: data.current == page}"
+              :title="'第'+page+'页'"
+              href="#"
+              @click.prevent="gotoPage(page)"
+            >{{ page }}</a>
 
-            <a :class="{undisable: !data.hasNext}" href="#" title="后一页" @click.prevent="gotoPage(data.current+1)">&gt;</a>
+            <a
+              :class="{undisable: !data.hasNext}"
+              href="#"
+              title="后一页"
+              @click.prevent="gotoPage(data.current+1)"
+            >&gt;</a>
 
-            <a :class="{undisable: !data.hasNext}" href="#" title="末页" @click.prevent="gotoPage(data.pages)">末页</a>
+            <a
+              :class="{undisable: !data.hasNext}"
+              href="#"
+              title="末页"
+              @click.prevent="gotoPage(data.pages)"
+            >末页</a>
 
             <div class="clear" />
           </div>
@@ -71,41 +102,53 @@
   </div>
 </template>
 <script>
-  //引入调用teacher.js文件
-  import teacherApi from '@/api/teacher'
-  export default {
-    data() {
-      return {
-        data: [], //查询之后接口返回集合
-        page: 1, //当前页
-        limit: 8, //每页记录数
-      }
-    },
-    created() {
-      this.getTeacherList()
-    },
-    methods: {
-      //获取老师列表
-      getTeacherList(page = 1) { //讲师列表的方法
-        this.page = page
-        teacherApi.getTeacherPageList(this.page, this.limit)
-          .then(response => { //请求成功
-            //response接口返回的数据
-            this.data = response.data.data
-          })
-          .catch(error => { //请求失败
-            console.log(error)
-          })
-      },
+//引入调用teacher.js文件
+import teacherApi from "@/api/teacher";
+export default {
+  data() {
+    return {
+      // data: [], //查询之后接口返回集合
+      page: 1, //当前页
+      limit: 8, //每页记录数
+    };
+  },
 
-      //分页切换的方法
-      //参数是页码数
-      gotoPage(page) {
-        teacherApi.getTeacherPageList(page, 8)
-          .then(response => {
-            this.data = response.data.data
-          })
-      }
-    }
-  };
+  asyncData({ params, error }) {
+    return teacherApi.getTeacherPageList(1, 8).then((resp) => {
+      // this.data = resp.data.data;
+      return { data: resp.data.data };
+    });
+  },
+
+  created() {
+    // this.getTeacherList();
+  },
+  methods: {
+    //获取老师列表
+    getTeacherList(page = 1) {
+      //讲师列表的方法
+      this.page = page;
+      teacherApi
+        .getTeacherPageList(this.page, this.limit)
+        .then((response) => {
+          //请求成功
+          //response接口返回的数据
+          this.data = response.data.data;
+        })
+        .catch((error) => {
+          //请求失败
+          console.log(error);
+        });
+    },
+
+    //分页切换的方法
+    //参数是页码数
+    gotoPage(page) {
+      teacherApi.getTeacherPageList(page, 8).then((response) => {
+        this.data = response.data.data;
+      });
+    },
+
+  },
+};
 </script>

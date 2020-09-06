@@ -3,7 +3,9 @@ package cn.dbdj1201.edu.service;
 import cn.dbdj1201.edu.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,4 +22,12 @@ public interface IEduTeacherService extends IService<EduTeacher> {
      * @return
      */
     List<EduTeacher> hotTeachers();
+
+    /**
+     * 获取分页数据集，全部封装到map中
+     * @param page
+     * @param limit
+     * @return
+     */
+    Map<String, Object> getFrontTeacherList(Long page, Long limit);
 }

@@ -31,7 +31,7 @@
       <div class="more-sign">
         <h6>社交帐号登录</h6>
         <ul>
-          <li><a id="weixin" class="weixin" target="_blank" href="https://open.weixin.qq.com/connect/qrconnect?appid=wxed9954c01bb89b47&redirect_uri=http%3A%2F%2Fguli.shop%2Fapi%2Fucenter%2Fwx%2Fcallback&response_type=code&scope=snsapi_login&state=zjm#wechat_redirect"><i
+          <li><a id="weixin" class="weixin" target="_blank" href=""><i
                 class="iconfont icon-weixin" /></a></li>
           <li><a id="qq" class="qq" target="_blank" href="#"><i class="iconfont icon-qq" /></a></li>
         </ul>
@@ -73,13 +73,14 @@
             //获取到的token字符串放入cookie
             //1.cookie名称，2.token参数值，3.作用范围-在什么样的请求中
             cookie.set("GOL_TOKEN",response.data.data.token,{domain:'localhost'})
+            //登录成功
             //调用接口 根据token解析出用户信息 给首页用
             loginApi.getLoginMemberInfo()
               .then(response => {
                 this.loginInfo = response.data.data.userInfo
                 //获取返回的用户信息  放入cookie
-                cookie.set("MindSchool_ucenter",this.loginInfo,{domain:'localhost'})
-                // 路由跳转 跳转守页面
+                cookie.set("GOL_UCENTER",this.loginInfo,{domain:'localhost'})
+                // 路由跳转 跳转首页
                 this.$router.push({path: '/'})
               })
           })

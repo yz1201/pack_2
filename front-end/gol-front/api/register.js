@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 export default {
   //根据手机号发送验证码
-  sendCode(phoneNumber) {
+  sendCode(phone) {
     return request({
-      url: `/edumsm/msm/send/${phoneNumber}`,
+      url: `/msm/send/${phone}`,
       method: 'get'
     })
   },
@@ -11,7 +11,7 @@ export default {
   //注册
   registerMember(formItem) {
     return request({
-      url: `/eduucenter/ucenter-member/register`,
+      url: `/ucenter/member/register`,
       method: 'post',
       data: formItem
     })

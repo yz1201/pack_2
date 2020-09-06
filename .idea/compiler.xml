@@ -9,8 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="service-oss" />
         <module name="service-cms" />
+        <module name="service-msm" />
         <module name="service-vod" />
         <module name="service-edu" />
+        <module name="service-ucenter" />
         <module name="service-base" />
         <module name="common-utils" />
       </profile>

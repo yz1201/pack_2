@@ -27,7 +27,7 @@ public class GOLException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "MSException{" +
+        return "GOLException{" +
                 "message=" + this.getMessage() +
                 ", code=" + code +
                 '}';

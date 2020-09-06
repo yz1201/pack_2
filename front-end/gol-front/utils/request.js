@@ -15,7 +15,7 @@ const service = axios.create({
 //创建拦截器 获取token 传递token到cookie中
 service.interceptors.request.use(
   config => {
-    //判断cookie里面是否有MindSchool_token数据
+    //判断cookie里面是否有GOL_TOKEN数据
     if (cookie.get('GOL_TOKEN')) {
       //把获取到的token放入cookie
       config.headers['TOKEN'] = cookie.get('GOL_TOKEN');

@@ -3,7 +3,7 @@ export default {
   //根据token获取用户信息
   getLoginMemberInfo() {
     return request({
-      url: `/eduucenter/ucenter-member/getMemberInfo`,
+      url: `/ucenter/member/getMemberInfo`,
       method: 'get'
     })
   },
@@ -11,7 +11,7 @@ export default {
   //登录
   loginMember(memberInfo) {
     return request({
-      url: `/eduucenter/ucenter-member/login`,
+      url: `/ucenter/member/login`,
       method: 'post',
       data: memberInfo
     })
@@ -20,7 +20,7 @@ export default {
   //根据id获取用户信息
   getMemberInfo(id) {
     return request({
-      url: `/eduucenter/ucenter-member/getUserInfoOrder/${id}`,
+      url: `/ucenter/member/getUserInfoOrder/${id}`,
       method: 'post'
     })
   },
@@ -28,7 +28,7 @@ export default {
   //根据id获取用户信息  （个人中心用）
   getMemberInfoSelf(id) {
     return request({
-      url: `/eduucenter/ucenter-member/getUserInfo/${id}`,
+      url: `/ucenter/member/getUserInfo/${id}`,
       method: 'post'
     })
   },
@@ -36,7 +36,7 @@ export default {
   //用户信息修改功能
   updataMemberInfo(ucenterMember) {
     return request({
-      url: `/eduucenter/ucenter-member/updateMember`,
+      url: `/ucenter/member/updateMember`,
       method: 'post',
       data: ucenterMember
     })
@@ -45,7 +45,7 @@ export default {
   //修改密码
   ChangePassword(formItem) {
     return request({
-      url: `/eduucenter/ucenter-member/change`,
+      url: `/ucenter/member/change`,
       method: 'post',
       data: formItem
     })
