@@ -12,19 +12,19 @@
         <section class="fl t-infor-box c-desc-content">
           <div class="mt20 ml20">
             <section class="t-infor-pic">
-              <img :src="teacherList.avatar">
+              <img :src="teacher.avatar">
             </section>
             <h3 class="hLh30">
-              <span class="fsize24 c-333">{{teacherList.name}}&nbsp;
-                {{ teacherList.level===1?'高级讲师':'首席讲师' }}
+              <span class="fsize24 c-333">{{teacher.name}}&nbsp;
+                {{ teacher.level===1?'高级讲师':'首席讲师' }}
               </span>
             </h3>
             <section class="mt10">
-              <span class="t-tag-bg">{{teacherList.intro}}</span>
+              <span class="t-tag-bg">{{teacher.intro}}</span>
             </section>
             <section class="t-infor-txt">
               <p
-                class="mt20">{{teacherList.career}}</p>
+                class="mt20">{{teacher.career}}</p>
             </section>
             <div class="clear"></div>
           </div>
@@ -77,7 +77,7 @@
   export default {
     data() {
       return {
-        teacherList:[],
+        teacher:{},
         courseList:[],
       }
     },
@@ -89,7 +89,7 @@
       getTeacherDetail() {
         teacherApi.getTeacherDetailInfo(this.$route.params.id)
           .then(response => {
-            this.teacherList = response.data.data.teacher,
+            this.teacher = response.data.data.teacher,
             this.courseList = response.data.data.courseList
           })
       },
