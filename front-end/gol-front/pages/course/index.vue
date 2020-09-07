@@ -16,9 +16,13 @@
             <dd class="c-s-dl-li">
               <ul class="clearfix">
                 <li>
-                  <a title="全部" href="">全部</a>
+                  <a title="全部" href>全部</a>
                 </li>
-                <li v-for="(item,index) in subjectNestedList" :key="index" :class="{active:oneIndex==index}">
+                <li
+                  v-for="(item,index) in subjectNestedList"
+                  :key="index"
+                  :class="{active:oneIndex==index}"
+                >
                   <a :title="item.title" href="#" @click="searchOne(item.id,index)">{{item.title}}</a>
                 </li>
               </ul>
@@ -30,10 +34,13 @@
             </dt>
             <dd class="c-s-dl-li">
               <ul class="clearfix">
-                <li v-for="(item,index) in subSubjectList" :key="index" :class="{active:twoIndex==index}">
+                <li
+                  v-for="(item,index) in subSubjectList"
+                  :key="index"
+                  :class="{active:twoIndex==index}"
+                >
                   <a :title="item.title" href="#" @click="searchTwo(item.id,index)">{{item.title}}</a>
                 </li>
-
               </ul>
             </dd>
           </dl>
@@ -48,18 +55,21 @@
           </section>
           <section class="fl">
             <ol class="js-tap clearfix">
-             <li :class="{'current bg-orange':buyCountSort!=''}">
-                <a title="销量" href="javascript:void(0);" @click="searchBuyCount()">销量
-                <span :class="{hide:buyCountSort==''}">↓</span>
+              <li :class="{'current bg-orange':buyCountSort!=''}">
+                <a title="销量" href="javascript:void(0);" @click="searchBuyCount()">
+                  销量
+                  <span :class="{hide:buyCountSort==''}">↓</span>
                 </a>
               </li>
               <li :class="{'current bg-orange':gmtCreateSort!=''}">
-                <a title="最新" href="javascript:void(0);" @click="searchGmtCreate()">最新
-                <span :class="{hide:gmtCreateSort==''}">↓</span>
+                <a title="最新" href="javascript:void(0);" @click="searchGmtCreate()">
+                  最新
+                  <span :class="{hide:gmtCreateSort==''}">↓</span>
                 </a>
               </li>
               <li :class="{'current bg-orange':priceSort!=''}">
-                <a title="价格" href="javascript:void(0);" @click="searchPrice()">价格&nbsp;
+                <a title="价格" href="javascript:void(0);" @click="searchPrice()">
+                  价格&nbsp;
                   <span :class="{hide:priceSort==''}">↓</span>
                 </a>
               </li>
@@ -75,16 +85,20 @@
           <!-- /无数据提示 结束-->
           <article v-if="data.total>0" class="comm-course-list">
             <ul class="of" id="bna">
-              <li v-for="item in data.items" :key="item.id">
+              <li v-for="item in data.records" :key="item.id">
                 <div class="cc-l-wrap">
                   <section class="course-img">
-                    <img :src="item.cover" class="img-responsive" :alt="item.title">
+                    <img :src="item.cover" class="img-responsive" :alt="item.title" />
                     <div class="cc-mask">
                       <a :href="'/course/'+item.id" title="开始学习" class="comm-btn c-btn-1">开始学习</a>
                     </div>
                   </section>
                   <h3 class="hLh30 txtOf mt10">
-                    <a :href="'/course/'+item.id" :title="item.title" class="course-title fsize18 c-333">{{item.title}}</a>
+                    <a
+                      :href="'/course/'+item.id"
+                      :title="item.title"
+                      class="course-title fsize18 c-333"
+                    >{{item.title}}</a>
                   </h3>
                   <section class="mt10 hLh20 of">
                     <span v-if="Number(item.price) === 0" class="fr jgTag bg-green">
@@ -101,18 +115,43 @@
             </ul>
             <div class="clear"></div>
           </article>
-          
         </div>
         <!-- 公共分页 开始 -->
         <div>
           <div class="paging">
             <!-- undisable这个class是否存在，取决于数据属性hasPrevious -->
-            <a :class="{undisable: !data.hasPrevious}" href="#" title="首页" @click.prevent="gotoPage(1)">首</a>
-            <a :class="{undisable: !data.hasPrevious}" href="#" title="前一页" @click.prevent="gotoPage(data.current-1)">&lt;</a>
-            <a v-for="page in data.pages" :key="page" :class="{current: data.current == page, undisable: data.current == page}"
-              :title="'第'+page+'页'" href="#" @click.prevent="gotoPage(page)">{{ page }}</a>
-            <a :class="{undisable: !data.hasNext}" href="#" title="后一页" @click.prevent="gotoPage(data.current+1)">&gt;</a>
-            <a :class="{undisable: !data.hasNext}" href="#" title="末页" @click.prevent="gotoPage(data.pages)">末</a>
+            <a
+              :class="{undisable: !data.hasPrevious}"
+              href="#"
+              title="首页"
+              @click.prevent="gotoPage(1)"
+            >首</a>
+            <a
+              :class="{undisable: !data.hasPrevious}"
+              href="#"
+              title="前一页"
+              @click.prevent="gotoPage(data.current-1)"
+            >&lt;</a>
+            <a
+              v-for="page in data.pages"
+              :key="page"
+              :class="{current: data.current == page, undisable: data.current == page}"
+              :title="'第'+page+'页'"
+              href="#"
+              @click.prevent="gotoPage(page)"
+            >{{ page }}</a>
+            <a
+              :class="{undisable: !data.hasNext}"
+              href="#"
+              title="后一页"
+              @click.prevent="gotoPage(data.current+1)"
+            >&gt;</a>
+            <a
+              :class="{undisable: !data.hasNext}"
+              href="#"
+              title="末页"
+              @click.prevent="gotoPage(data.pages)"
+            >末</a>
             <div class="clear" />
           </div>
         </div>
@@ -122,148 +161,146 @@
   </div>
 </template>
 <script>
-  //引入调用course.js文件
-  import courseApi from '@/api/course'
-  export default {
-    data() {
-      return {
-        page: 1, //当前页
-        data: {}, //课程列表
-        subjectNestedList: [], // 一级分类列表
-        subSubjectList: [], // 二级分类列表
-        courseObj: {}, // 查询表单对象
-        oneIndex: -1,
-        twoIndex: -1,
-        buyCountSort: "",
-        gmtCreateSort: "",
-        priceSort: ""
-      }
+//引入调用course.js文件
+import courseApi from "@/api/course";
+export default {
+  data() {
+    return {
+      page: 1, //当前页
+      data: {}, //课程列表
+      subjectNestedList: [], // 一级分类列表
+      subSubjectList: [], // 二级分类列表
+      courseObj: {}, // 查询表单对象
+      //一级分类样式
+      oneIndex: -1,
+      twoIndex: -1,
+      buyCountSort: "",
+      gmtCreateSort: "",
+      priceSort: "",
+    };
+  },
+  created() {
+    //课程第一次查询
+    this.initCourseFirst();
+    //一级分类显示
+    this.initSubject();
+  },
+  methods: {
+    //1 查询第一页数据
+    initCourseFirst() {
+      courseApi.getCourseList(1, 8, this.courseObj).then((response) => {
+        this.data = response.data.data;
+      });
     },
-    created() {
-      //课程第一次查询
-      this.initCourseFirst()
-      //一级分类显示
-      this.initSubject()
+
+    //2 查询所有一级分类
+    initSubject() {
+      courseApi.getAllSubject().then((response) => {
+        this.subjectNestedList = response.data.data.subjects;
+      });
     },
-    methods: {
-      //1 查询第一页数据
-      initCourseFirst() {
-        courseApi.getCourseList(1, 8, this.courseObj)
-          .then(response => {
-            this.data = response.data.data
-          })
-      },
 
-      //2 查询所有一级分类
-      initSubject() {
-        courseApi.getAllSubject()
-          .then(response => {
-            this.subjectNestedList = response.data.data.list
-          })
-      },
+    //3 分页切换的方法
+    gotoPage(page) {
+      courseApi.getCourseList(page, 8, this.courseObj).then((response) => {
+        this.data = response.data.data;
+      });
+    },
 
-      //3 分页切换的方法
-      gotoPage(page) {
-        courseApi.getCourseList(page, 8, this.courseObj).then(response => {
-          this.data = response.data.data
-        })
-      },
+    //4 点击某个一级分类，查询对应二级分类
+    searchOne(subjectParentId, index) {
+      //把传递index值赋值给oneIndex,为了active样式生效  页面样式
+      this.oneIndex = index;
+      this.twoIndex = -1;
+      this.courseObj.subjectId = "";
+      this.subSubjectList = [];
 
-      //4 点击某个一级分类，查询对应二级分类
-      searchOne(subjectParentId, index) {
-        //把传递index值赋值给oneIndex,为了active样式生效  页面样式
-        this.oneIndex = index
-        this.twoIndex = -1
-        this.courseObj.subjectId = ""
-        this.subSubjectList = []
+      //把一级分类点击id值，赋值给courseObj
+      this.courseObj.subjectParentId = subjectParentId;
+      //点击某个一级分类进行条件查询
+      this.gotoPage(1);
 
-        //把一级分类点击id值，赋值给courseObj
-        this.courseObj.subjectParentId = subjectParentId
-        //点击某个一级分类进行条件查询
-        this.gotoPage(1)
-
-        //拿着点击一级分类id 和 所有一级分类id进行比较，
-        //如果id相同，从一级分类里面获取对应的二级分类
-        for (var i = 0; i < this.subjectNestedList.length; i++) {
-          //获取每个一级分类
-          var oneSubject = this.subjectNestedList[i]
-          //比较id是否相同
-          if (subjectParentId == oneSubject.id) {
-            //从一级分类里面获取对应的二级分类
-            this.subSubjectList = oneSubject.children
-          }
+      //拿着点击一级分类id 和 所有一级分类id进行比较，
+      //如果id相同，从一级分类里面获取对应的二级分类
+      for (var i = 0; i < this.subjectNestedList.length; i++) {
+        //获取每个一级分类
+        var oneSubject = this.subjectNestedList[i];
+        //比较id是否相同
+        if (subjectParentId == oneSubject.id) {
+          //从一级分类里面获取对应的二级分类
+          this.subSubjectList = oneSubject.children;
         }
-      },
-
-      //5 点击某个二级分类实现查询
-      searchTwo(subjectId, index) {
-        //把index赋值,为了样式生效
-        this.twoIndex = index
-        //把二级分类点击id值，赋值给courseObj
-        this.courseObj.subjectId = subjectId
-        //点击某个二级分类进行条件查询
-        this.gotoPage(1)
-      },
-
-      //6 根据销量排序
-      searchBuyCount() {
-        //设置对应变量值，为了样式生效
-        this.buyCountSort = "1"
-        this.gmtCreateSort = ""
-        this.priceSort = ""
-
-        //把值赋值到courseObj
-        this.courseObj.buyCountSort = this.buyCountSort
-        this.courseObj.gmtCreateSort = this.gmtCreateSort;
-        this.courseObj.priceSort = this.priceSort;
-
-        //调用方法查询
-        this.gotoPage(1)
-      },
-
-      //7 最新排序
-      searchGmtCreate() {
-        //设置对应变量值，为了样式生效
-        this.buyCountSort = ""
-        this.gmtCreateSort = "1"
-        this.priceSort = ""
-
-        //把值赋值到courseObj
-        this.courseObj.buyCountSort = this.buyCountSort
-        this.courseObj.gmtCreateSort = this.gmtCreateSort;
-        this.courseObj.priceSort = this.priceSort;
-
-        //调用方法查询
-        this.gotoPage(1)
-      },
-
-      //8 价格排序
-      searchPrice() {
-        //设置对应变量值，为了样式生效
-        this.buyCountSort = ""
-        this.gmtCreateSort = ""
-        this.priceSort = "1"
-
-        //把值赋值到courseObj
-        this.courseObj.buyCountSort = this.buyCountSort
-        this.courseObj.gmtCreateSort = this.gmtCreateSort;
-        this.courseObj.priceSort = this.priceSort;
-
-        //调用方法查询
-        this.gotoPage(1)
       }
+    },
 
-    }
-  };
+    //5 点击某个二级分类实现查询
+    searchTwo(subjectId, index) {
+      //把index赋值,为了样式生效
+      this.twoIndex = index;
+      //把二级分类点击id值，赋值给courseObj
+      this.courseObj.subjectId = subjectId;
+      //点击某个二级分类进行条件查询
+      this.gotoPage(1);
+    },
+
+    //6 根据销量排序
+    searchBuyCount() {
+      //设置对应变量值，为了样式生效
+      this.buyCountSort = "1";
+      this.gmtCreateSort = "";
+      this.priceSort = "";
+
+      //把值赋值到courseObj
+      this.courseObj.buyCountSort = this.buyCountSort;
+      this.courseObj.gmtCreateSort = this.gmtCreateSort;
+      this.courseObj.priceSort = this.priceSort;
+
+      //调用方法查询
+      this.gotoPage(1);
+    },
+
+    //7 最新排序
+    searchGmtCreate() {
+      //设置对应变量值，为了样式生效
+      this.buyCountSort = "";
+      this.gmtCreateSort = "1";
+      this.priceSort = "";
+
+      //把值赋值到courseObj
+      this.courseObj.buyCountSort = this.buyCountSort;
+      this.courseObj.gmtCreateSort = this.gmtCreateSort;
+      this.courseObj.priceSort = this.priceSort;
+
+      //调用方法查询
+      this.gotoPage(1);
+    },
+
+    //8 价格排序
+    searchPrice() {
+      //设置对应变量值，为了样式生效
+      this.buyCountSort = "";
+      this.gmtCreateSort = "";
+      this.priceSort = "1";
+
+      //把值赋值到courseObj
+      this.courseObj.buyCountSort = this.buyCountSort;
+      this.courseObj.gmtCreateSort = this.gmtCreateSort;
+      this.courseObj.priceSort = this.priceSort;
+
+      //调用方法查询
+      this.gotoPage(1);
+    },
+  },
+};
 </script>
 <style scoped>
-  .active {
-    background: #bdbdbd;
-  }
-  .hide {
-    display: none;
-  }
-  .show {
-    display: block;
-  }
+.active {
+  background: #FFFF00;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
 </style>

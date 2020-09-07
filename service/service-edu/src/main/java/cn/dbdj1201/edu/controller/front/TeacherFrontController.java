@@ -22,7 +22,7 @@ import java.util.Map;
  * @Date: 2020-09-06 18:44
  */
 @RestController
-@RequestMapping("/edu/teacher/front")
+@RequestMapping("/edu/front/teacher")
 @Slf4j
 @Api("讲师前台接口")
 @CrossOrigin

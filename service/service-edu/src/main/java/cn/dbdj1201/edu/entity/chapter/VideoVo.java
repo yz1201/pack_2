@@ -18,4 +18,6 @@ public class VideoVo {
     private String title;
     //视频id
     private String videoSourceId;
+    //是否免费
+    private Integer isFree;
 }

@@ -10,6 +10,8 @@ import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
+import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -79,12 +81,23 @@ public class VodServiceImpl implements IVodService {
         this.deleteVideoByVideoId(idStr);
     }
 
-//    public static void main(String[] args) {
-//        String[] ids = {"1", "2", "310"};
-//
-//        StringBuilder sb = new StringBuilder();
-//
-//        Arrays.stream(ids).forEach(id -> sb.append(id).append(","));
-//        System.out.println(sb.substring(0, sb.lastIndexOf(",")));
-//    }
+    @Override
+    public String getPlayAuth(String id) {
+        String playAuth;
+        GetVideoPlayAuthRequest request = new GetVideoPlayAuthRequest();
+        GetVideoPlayAuthResponse response;
+        request.setVideoId(id);
+        try {
+            response = this.defaultAcsClient.getAcsResponse(request);
+            playAuth = response.getPlayAuth();
+            log.info("获取到了播放凭证-{}", playAuth);
+        } catch (Exception e) {
+            log.error("获取视频播放凭证出错");
+            e.printStackTrace();
+            return null;
+        }
+        return playAuth;
+    }
+
+
 }

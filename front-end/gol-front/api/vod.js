@@ -3,7 +3,7 @@ export default {
   //获取阿里云视频凭证
   getPlayAuth(id) {
       return request({
-        url: `/eduvod/video/getPlayAuth/${id}`,
+        url: `/vod/video/getPlayAuth/${id}`,
         method: 'get'
       })
     }

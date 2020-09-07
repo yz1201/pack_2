@@ -20,7 +20,7 @@
 import vodApi from '@/api/vod'
 
 export default {
-    layout: 'default',//应用video布局
+    layout: 'videoPlayer',//应用video布局
     asyncData({ params, error }) {
        return vodApi.getPlayAuth(params.videoId)
         .then(response => {
@@ -58,7 +58,7 @@ export default {
                    * style: 跑马灯样式
                    * bulletPosition: 跑马灯位置, 可选的值为 'top' (顶部), 'bottom' (底部), 'random' (随机), 不传值默认为 'random'
                    */
-                args: ['欢迎来到MindSchool', { fontSize: '18px', color: '#ffaa00' }, 'random']
+                args: ['欢迎来到GOL', { fontSize: '18px', color: '#ffaa00' }, 'random']
             },]
         }, function(player) {
             console.log('播放器创建成功')

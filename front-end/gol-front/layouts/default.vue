@@ -98,7 +98,7 @@
                 <a href="#" title="帮助中心" target="_blank">帮助中心</a>|
                 <a href="http://jxnu.fanya.chaoxing.com/portal" title="资源下载" target="_blank">资源下载</a>|
                 <span>服务热线：???</span>
-                <span>Email：2285532987@qq.com</span>
+                <span>Email：15957121194@163.com</span>
               </section>
               <section class="b-f-link mt10">
                 <span>©2020课程版权均归GOL所有 京ICP备xxxxxxxx号</span>

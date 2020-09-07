@@ -3,7 +3,7 @@ export default {
   //分页查询讲师的方法
   getTeacherPageList(page,limit) {
     return request({
-      url: `/edu/teacher/front/getTeacherFrontList/${page}/${limit}`,
+      url: `/edu/front/teacher/getTeacherFrontList/${page}/${limit}`,
       method: 'post',
     })
   },
@@ -11,7 +11,7 @@ export default {
   //讲师详情的方法
   getTeacherDetailInfo(teacherId) {
     return request({
-      url: `/edu/teacher/front/getTeacherFrontInfo/${teacherId}`,
+      url: `/edu/front/teacher/getTeacherFrontInfo/${teacherId}`,
       method: 'get',
     })
   },

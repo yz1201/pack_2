@@ -19,10 +19,16 @@ public interface IEduSubjectService extends IService<EduSubject> {
 
     /**
      * 添加课程分类
-     * @param file 上传的excel表格
+     *
+     * @param file           上传的excel表格
      * @param subjectService
      */
     void addSubject(MultipartFile file, IEduSubjectService subjectService);
 
+    /**
+     * 查询所有一二级分类VO，二级分类嵌套在一级分类中
+     *
+     * @return
+     */
     List<MainSubject> getAllSubjects();
 }

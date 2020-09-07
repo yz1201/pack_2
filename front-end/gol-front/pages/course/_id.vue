@@ -130,14 +130,15 @@
                               <li class="lh-menu-second ml30" v-for="video in chapter.children" :key="video.id">
 
                                 <a :href="'/player/'+video.videoSourceId"
+                                target="_blank"
                                    v-if="isBought || Number(courseWebVo.price) === 0"
                                    :title="video.title">
                                   <em class="lh-menu-i-2 icon16 mr5">&nbsp;</em>{{video.title}}
                                 </a>
 
-                                <a v-else-if="video.free === true"
+                                <a v-else-if="video.isFree === 1"
                                    :href="'/player/'+video.videoSourceId"
-                                   :title="video.title">
+                                   :title="video.title" target="_blank">
                                   <span class="fr">
                                     <i class="free-icon vam mr10">免费试听</i>
                                   </span>
@@ -303,7 +304,6 @@
   //引入调用js-cookie
   import cookie from 'js-cookie'
   export default {
-
     asyncData({ params, error }) {
         return courseApi.getCourseInfo(params.id)
             .then(response => {
@@ -335,7 +335,7 @@
     },
 
     created() {
-      const token = cookie.get('MindSchool_token')
+      const token = cookie.get('GOL_TOKEN')
       // 如果未登录，则isBought=false
       // 如果已登录，则判断是否已购买
       if (token) {
@@ -354,7 +354,7 @@
     methods: {
       init(){
         //判断是否登录
-        const token = cookie.get('MindSchool_token')
+        const token = cookie.get('GOL_TOKEN')
         // 如果未登录，提示登录
         if (token) {
           this.createOrders()
@@ -384,7 +384,7 @@
 
       init2(){
         //判断是否登录
-        const token = cookie.get('MindSchool_token')
+        const token = cookie.get('GOL_TOKEN')
         // 如果未登录，提示登录
         if (token) {
           this.addCollect()
@@ -432,7 +432,7 @@
 
       init3(){
         //判断是否登录
-        const token = cookie.get('MindSchool_token')
+        const token = cookie.get('GOL_TOKEN')
         // 如果未登录，提示登录
         if (token) {
           this.addComment()

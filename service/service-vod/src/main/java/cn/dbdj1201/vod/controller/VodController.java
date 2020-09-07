@@ -46,4 +46,11 @@ public class VodController {
         this.vodService.deleteVideoByVideoIds(ids);
         return R.success().message("批量删除视频成功");
     }
+
+    @GetMapping("/getPlayAuth/{id}")
+    public R getPlayAuth(@PathVariable String id) {
+        log.info("根据视频id获取视频播放凭证-{}", id);
+        String playAuth = this.vodService.getPlayAuth(id);
+        return R.success().data("playAuth", playAuth);
+    }
 }

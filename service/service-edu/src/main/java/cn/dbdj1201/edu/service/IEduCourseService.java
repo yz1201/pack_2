@@ -1,11 +1,14 @@
 package cn.dbdj1201.edu.service;
 
 import cn.dbdj1201.edu.entity.EduCourse;
+import cn.dbdj1201.edu.entity.frontvo.CourseFrontVo;
+import cn.dbdj1201.edu.entity.frontvo.CourseWebVo;
 import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
 import cn.dbdj1201.edu.entity.vo.CoursePublishVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -56,4 +59,19 @@ public interface IEduCourseService extends IService<EduCourse> {
      */
     List<EduCourse> getHotCourses();
 
+    /**
+     * 查询前台课程页
+     * @param page
+     * @param limit
+     * @param courseFrontVo
+     * @return
+     */
+    Map<String, Object> pageCourseByCondition(Long page, Long limit, CourseFrontVo courseFrontVo);
+
+    /**
+     *  根据课程id查询课程信息
+     * @param courseId
+     * @return
+     */
+    CourseWebVo getCourseWebVo(String courseId);
 }

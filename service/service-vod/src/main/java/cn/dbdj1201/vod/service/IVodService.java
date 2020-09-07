@@ -12,4 +12,11 @@ public interface IVodService {
     void deleteVideoByVideoId(String videoId);
 
     void deleteVideoByVideoIds(String[] ids);
+
+    /**
+     * 根据视频id获取视频播放凭证
+     * @param id
+     * @return
+     */
+    String getPlayAuth(String id);
 }
