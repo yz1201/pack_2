@@ -3,7 +3,7 @@ export default {
   //获取评论列表
   getPageList(page, limit, courseId) {
       return request({
-        url: `/eduservice/edu-comment/commentList/${page}/${limit}`,
+        url: `/edu/comment/commentList/${page}/${limit}`,
         method: 'get',
         params: {courseId}
       })
@@ -12,7 +12,7 @@ export default {
    //用户添加评论 
    addComment(comment) {
       return request({
-        url: `/eduservice/edu-comment/saveComment`,
+        url: `/edu/comment/saveComment`,
         method: 'post',
         data: comment
       })
@@ -21,7 +21,7 @@ export default {
     //用户删除评论
     deleteComment(commentId) {
        return request({
-         url: `/eduservice/edu-comment/deleteComment/${commentId}`,
+         url: `/edu/comment/deleteComment/${commentId}`,
          method: 'delete',
        })
      },
@@ -29,7 +29,7 @@ export default {
      //判断是否是该用户的评论
      isComment(commentId) {
        return request({
-         url: `/eduservice/edu-comment/isComment/${commentId}`,
+         url: `/edu/comment/isComment/${commentId}`,
          method: 'get',
          params: {commentId}
        })

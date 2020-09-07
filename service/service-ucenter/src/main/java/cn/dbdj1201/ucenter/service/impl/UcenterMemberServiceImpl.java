@@ -69,6 +69,13 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         return JwtUtils.generateJWT(new JwtInfo(one.getId(), one.getNickname(), one.getAvatar()), 60 * 60 * 24);
     }
 
+    public static void main(String[] args) {
+
+        System.out.println(JwtUtils.generateJWT(new JwtInfo("1", "dbdj1201", "34634"), 60 * 60 * 24));
+
+    }
+
+
     @Override
     public void register(RegisterVo registerVo) {
         /*

@@ -62,4 +62,5 @@ public class UcenterMemberController {
         this.memberService.register(registerVo);
         return R.success();
     }
+
 }

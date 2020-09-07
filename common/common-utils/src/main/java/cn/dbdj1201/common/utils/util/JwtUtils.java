@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.joda.time.DateTime;
 import org.springframework.util.StringUtils;
 
@@ -13,7 +14,7 @@ import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
 import java.util.Date;
 
-
+@Slf4j
 public class JwtUtils {
 
     public static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";
@@ -29,7 +30,7 @@ public class JwtUtils {
         return Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("alg", "HS256")
-                .setSubject("MindSchool-user")//主题
+                .setSubject("GOL-USER")//主题
                 .setIssuedAt(new Date())//颁发时间
                 .setExpiration(DateTime.now().plusSeconds(expire).toDate())//过期时间
                 .claim("id", jwtInfo.getId())//用户id
@@ -87,6 +88,7 @@ public class JwtUtils {
         }
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(getKeyInstance()).parseClaimsJws(jwtToken);
         Claims claims = claimsJws.getBody();
+        log.info("claims-{}", claims);
         return new JwtInfo(claims.get("id").toString(), claims.get("nickname").toString(), claims.get("avatar").toString());
     }
 
