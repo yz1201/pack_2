@@ -21,7 +21,7 @@
 		WHERE ec.id = #{courseId}
     </select>
 
-	<select id="getCourseWebVo" parameterType="string" resultType="cn.dbdj1201.edu.entity.frontvo.CourseWebVo">
+    <select id="getCourseWebVo" parameterType="string" resultType="cn.dbdj1201.edu.entity.frontvo.CourseWebVo">
 		SELECT
 			ec.id,
 			ec.title,
@@ -47,4 +47,14 @@
 			LEFT JOIN edu_subject es2 ON es2.id = ec.subject_id
 		WHERE ec.id = #{courseId}
     </select>
+
+    <select id="findAddCoursesAtSomeDay" resultMap="int">
+
+		SELECT
+			count( 1 )
+		FROM
+			edu_course
+		WHERE
+			DATE( gmt_create ) = #{date};
+	</select>
 </mapper>

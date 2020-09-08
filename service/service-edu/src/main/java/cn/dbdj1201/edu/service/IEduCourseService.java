@@ -82,4 +82,11 @@ public interface IEduCourseService extends IService<EduCourse> {
      * @return
      */
     CourseWebVoOrder getCourseInfoOrderById(String courseId);
+
+    /**
+     * 获取某天课程新增数
+     * @param date
+     * @return
+     */
+    Integer getAddCourseCount(String date);
 }

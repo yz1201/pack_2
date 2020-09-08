@@ -44,9 +44,6 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     @Autowired
     private IEduChapterService chapterService;
 
-    @Autowired
-    private IEduTeacherService teacherService;
-
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
 
@@ -231,5 +228,15 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         BeanUtil.copyProperties(courseWebVo, order);
         log.info("Order课程信息查询完毕-{}", courseWebVo);
         return order;
+    }
+
+    @Override
+    public Integer getAddCourseCount(String date) {
+        if (date == null) {
+            throw new GOLException(20001, "日期呢？");
+        }
+        Integer count = this.baseMapper.findAddCoursesAtSomeDay(date);
+        log.info("{}共新增{}门视频课程", date, count);
+        return count;
     }
 }

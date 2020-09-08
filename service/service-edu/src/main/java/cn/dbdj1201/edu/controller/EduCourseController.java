@@ -71,12 +71,6 @@ public class EduCourseController {
         return R.success().data("eduCourse", eduCourse);
     }
 
-//    @GetMapping("findAll")
-//    public R findAll() {
-//        return R.success().data("list", this.courseService.getBaseMapper().selectList(null));
-//    }
-
-
     @PostMapping("/updateCourseInfo")
     @ApiOperation("修改课程信息")
     public R updateCourseInfo(@RequestBody CourseInfoVo courseInfoVo) {
@@ -156,6 +150,13 @@ public class EduCourseController {
         log.info("删除课程-{}", courseId);
         this.courseService.removeCourseById(courseId);
         return R.success();
+    }
+
+    @ApiOperation("获取某天课程新增数")
+    @GetMapping("/getAddCourseCount/{date}")
+    public R getAddCourseCount(@PathVariable("date") String date) {
+        log.info("查询{}的新增课程数", date);
+        return R.success().data("courseCount", this.courseService.getAddCourseCount(date));
     }
 
 }

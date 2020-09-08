@@ -24,5 +24,24 @@ public interface IStatisticsDailyService extends IService<StatisticsDaily> {
      */
     R registerCounter(String date);
 
+    /**
+     * 统计某一天的数据
+     * @param date
+     * @return
+     */
+    R statisticsFieldCounter(String date);
+
+    /**
+     * 根据查询字段获取统计数据
+     * @param statisticsListVo
+     * @return
+     */
     Map<String, Object> getStaData(StatisticsListVo statisticsListVo);
+
+    /**
+     * 获取一段日期内的所有统计数据字段
+     * @param statisticsListVo
+     * @return
+     */
+     Map<String, Object> getStatisticsData(StatisticsListVo statisticsListVo);
 }

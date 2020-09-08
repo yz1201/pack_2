@@ -2,7 +2,7 @@ package cn.dbdj1201.statistics.controller;
 
 
 import cn.dbdj1201.common.utils.result.R;
-import cn.dbdj1201.statistics.api.UcenterClient;
+import cn.dbdj1201.statistics.api.StaUcenterClient;
 import cn.dbdj1201.statistics.entity.vo.StatisticsListVo;
 import cn.dbdj1201.statistics.service.IStatisticsDailyService;
 import io.swagger.annotations.Api;
@@ -39,12 +39,22 @@ public class StatisticsDailyController {
     }
 
     @ApiOperation("获取统计数据")
-    @GetMapping("/getStaData")
+    @PostMapping("/getStaData")
     public R getStaData(@RequestBody StatisticsListVo statisticsListVo) {
         log.info("根据{}查询统计数据", statisticsListVo);
         //获取统计数据，返回数据数组及日期数组
         Map<String, Object> map = this.dailyService.getStaData(statisticsListVo);
-
-        return R.success();
+        return R.success().data(map);
     }
+
+    @ApiOperation("获取统计数据")
+    @PostMapping("/getStatisticsData")
+    public R getStatisticsData(@RequestBody StatisticsListVo statisticsListVo) {
+        log.info("根据{}查询all统计数据", statisticsListVo);
+        //获取统计数据，返回数据数组及日期数组
+        Map<String, Object> map = this.dailyService.getStatisticsData(statisticsListVo);
+        return R.success().data(map);
+    }
+
+
 }

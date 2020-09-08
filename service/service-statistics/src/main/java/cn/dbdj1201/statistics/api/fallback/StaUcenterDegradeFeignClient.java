@@ -1,6 +1,7 @@
-package cn.dbdj1201.statistics.api;
+package cn.dbdj1201.statistics.api.fallback;
 
 import cn.dbdj1201.common.utils.result.R;
+import cn.dbdj1201.statistics.api.StaUcenterClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @Slf4j
-public class UcenterDegradeFeignClient implements UcenterClient {
+public class StaUcenterDegradeFeignClient implements StaUcenterClient {
 
     @Override
     public R findRegisterCountAtSomeday(String date) {

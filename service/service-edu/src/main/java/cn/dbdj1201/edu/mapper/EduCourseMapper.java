@@ -18,4 +18,6 @@ public interface EduCourseMapper extends BaseMapper<EduCourse> {
     CoursePublishVo getPublishedCourse(String courseId);
 
     CourseWebVo getCourseWebVo(String courseId);
+
+    Integer findAddCoursesAtSomeDay(String date);
 }
