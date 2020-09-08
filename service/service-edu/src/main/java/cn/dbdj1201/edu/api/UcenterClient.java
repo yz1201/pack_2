@@ -1,6 +1,7 @@
 package cn.dbdj1201.edu.api;
 
 import cn.dbdj1201.common.utils.result.R;
+import cn.dbdj1201.edu.api.fallback.UcenterDegradeFeignClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;

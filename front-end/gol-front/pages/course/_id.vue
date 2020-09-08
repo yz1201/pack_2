@@ -370,14 +370,14 @@
         }
       },
 
-      //生成订单
+      //给该课程生成订单
       createOrders() {
         orderApi.createOrders(this.$route.params.id)
           .then(response => {
             //获取返回订单号
             //生成订单之后，跳转订单显示页面
             this.$router.push({
-              path: '/order/' + response.data.data.orderId
+              path: '/order/' + response.data.data.orderNo
             })
           })
       },

@@ -48,7 +48,7 @@
       </table>
       <div class="Finish">
         <div class="fr" id="AgreeDiv">
-          <el-checkbox v-model="agree">我已阅读并同意<a href="javascript:" target="_blank">《MindSchool购买协议》</a></el-checkbox>
+          <el-checkbox v-model="agree">我已阅读并同意<a href="javascript:" target="_blank">《GOL购买协议》</a></el-checkbox>
         </div>
         <div class="clear"></div>
         <div class="Main fl">
@@ -72,7 +72,7 @@ import orderApi from '@/api/order'
 export default {
     data() {
       return {
-        order: [],
+        order: {},
         orderNo: '',
         agree: true
       }

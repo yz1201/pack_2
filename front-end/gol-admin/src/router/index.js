@@ -184,6 +184,28 @@ export const constantRoutes = [
 
     ]
   },
+  //统计分析模块
+  {
+    path: '/statistics',
+    component: Layout,
+    redirect: '/statistics/list',
+    name: '统计分析',
+    meta: { title: '统计分析', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'create',
+        name: '数据构造',
+        component: () => import('@/views/statistics/create'),
+        meta: { title: '数据构造', icon: 'table' }
+      },
+      {
+        path: 'list',
+        name: '图表显示',
+        component: () => import('@/views/statistics/list'),
+        meta: { title: '图表显示', icon: 'tree' }
+      }
+    ]
+  },
 
   {
     path: '/form',

@@ -4,15 +4,15 @@ export default {
   //生成订单
   createOrders(courseId) {
     return request({
-      url: '/eduorder/order/createOrder/' + courseId,
+      url: 'order/generateOrder/' + courseId,
       method: 'post'
     })
   },
 
-  //根据订单id查询订单信息
-  getOrdersInfo(orderId) {
+  //根据订单no查询订单信息
+  getOrdersInfo(orderNo) {
     return request({
-      url: '/eduorder/order/getOrderInfo/' + orderId,
+      url: 'order/getOrderInfo/' + orderNo,
       method: 'get'
     })
   },
@@ -20,7 +20,7 @@ export default {
   //生成二维码的方法
   createQRcode(orderNo) {
     return request({
-      url: '/eduorder/pay-log/createQrCode/' + orderNo,
+      url: '/payLog/createQrCode/' + orderNo,
       method: 'get'
     })
   },
@@ -28,7 +28,7 @@ export default {
   //查询订单状态的方法
   queryPayStatus(orderNo) {
     return request({
-      url: '/eduorder/pay-log/queryPayStatus/' + orderNo,
+      url: '/payLog/queryPayStatus/' + orderNo,
       method: 'get'
     })
   },
@@ -36,7 +36,7 @@ export default {
   //获取用户所有订单
   getOrderList(){
     return request({
-      url: `/eduorder/order/orderList`,
+      url: '/order/orderList',
       method: 'get'
     })
   },
@@ -44,7 +44,7 @@ export default {
   //根据订单id删除订单
   removeOrderById(orderId){
     return request({
-      url: `/eduorder/order/removeOrder/${orderId}`,
+      url: `/order/removeOrder/${orderId}`,
       method: 'delete'
     })
   },
@@ -52,7 +52,7 @@ export default {
   //查询订单表中订单的状态 判断课程是否购买
   isBought(courseId) {
     return request({
-      url: `/eduorder/order/isBought/${courseId}`,
+      url: `/order/isBought/${courseId}`,
       method: 'get'
     })
   },

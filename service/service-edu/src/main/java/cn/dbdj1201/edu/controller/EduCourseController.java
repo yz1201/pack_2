@@ -1,6 +1,7 @@
 package cn.dbdj1201.edu.controller;
 
 
+import cn.dbdj1201.common.utils.ordervo.CourseWebVoOrder;
 import cn.dbdj1201.common.utils.result.R;
 import cn.dbdj1201.edu.entity.EduCourse;
 import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
@@ -150,12 +151,11 @@ public class EduCourseController {
     @PostMapping("/delete/{courseId}")
     public R deleteCourseById(@PathVariable String courseId) {
         /*
-        todo 小节的视频别忘了删除，暂时还没有 要删除的有所有章节，章节下的所有小节，小节下还有视频
+         小节的视频别忘了删除，暂时还没有 要删除的有所有章节，章节下的所有小节，小节下还有视频
          */
         log.info("删除课程-{}", courseId);
         this.courseService.removeCourseById(courseId);
         return R.success();
     }
-
 
 }

@@ -1,5 +1,6 @@
 package cn.dbdj1201.edu.service;
 
+import cn.dbdj1201.common.utils.ordervo.CourseWebVoOrder;
 import cn.dbdj1201.edu.entity.EduCourse;
 import cn.dbdj1201.edu.entity.frontvo.CourseFrontVo;
 import cn.dbdj1201.edu.entity.frontvo.CourseWebVo;
@@ -74,4 +75,11 @@ public interface IEduCourseService extends IService<EduCourse> {
      * @return
      */
     CourseWebVo getCourseWebVo(String courseId);
+
+    /**
+     * 根据课程id获取生成订单所需课程信息
+     * @param courseId
+     * @return
+     */
+    CourseWebVoOrder getCourseInfoOrderById(String courseId);
 }

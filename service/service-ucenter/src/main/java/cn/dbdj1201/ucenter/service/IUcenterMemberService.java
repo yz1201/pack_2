@@ -32,4 +32,12 @@ public interface IUcenterMemberService extends IService<UcenterMember> {
      * @return
      */
     UcenterMember getOpenIdMember(String openId);
+
+    /**
+     * 查询特定日期的注册人数
+     *
+     * @param date
+     * @return
+     */
+    Integer findRegisterCountAtSomeday(String date);
 }

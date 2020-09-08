@@ -1,5 +1,6 @@
 package cn.dbdj1201.edu.controller.front;
 
+import cn.dbdj1201.common.utils.ordervo.CourseWebVoOrder;
 import cn.dbdj1201.common.utils.result.R;
 import cn.dbdj1201.edu.entity.EduCourse;
 import cn.dbdj1201.edu.entity.chapter.ChapterVo;
@@ -71,5 +72,12 @@ public class CourseFrontController {
         List<ChapterVo> chapterVos = this.chapterService.findChaptersAndVideosByCourseId(courseId);
         log.info("课程下内容查询完毕-{}", chapterVos);
         return R.success().data("courseWebVo", courseWebVo).data("chapterVideoList", chapterVos);
+    }
+
+    @ApiOperation("根据课程id获取生成订单所需课程信息")
+    @GetMapping("/getCourseInfoOrder/{courseId}")
+    public CourseWebVoOrder getCourseInfoOrder(@PathVariable String courseId) {
+        log.info("根据课程id获取生成订单所需课程信息-{}", courseId);
+        return this.courseService.getCourseInfoOrderById(courseId);
     }
 }

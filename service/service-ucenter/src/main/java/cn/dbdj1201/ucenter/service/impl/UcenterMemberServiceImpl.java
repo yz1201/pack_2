@@ -17,6 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * <p>
  * 会员表 服务实现类
@@ -70,9 +72,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
     }
 
     public static void main(String[] args) {
-
-        System.out.println(JwtUtils.generateJWT(new JwtInfo("1", "dbdj1201", "34634"), 60 * 60 * 24));
-
+        System.out.println(JwtUtils.generateJWT(new JwtInfo("1302546754869010433", "Siijer", "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLKn3pyoQZHjYZsqX5Np2TiaDO0OQuzicgxuGpmYnjJNHyW2NYKKOxEG7SMnQ5vdVJZs5ObzTErKp1A/132"), 60 * 60 * 24));
     }
 
 
@@ -123,6 +123,17 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
     @Override
     public UcenterMember getOpenIdMember(String openId) {
         return this.getOne(new QueryWrapper<UcenterMember>().eq("openid", openId));
+    }
+
+    @Override
+    public Integer findRegisterCountAtSomeday(String date) {
+//        try {
+//            TimeUnit.SECONDS.sleep(10);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+
+        return this.baseMapper.findRegisterCountAtSomeDay(date);
     }
 
 }

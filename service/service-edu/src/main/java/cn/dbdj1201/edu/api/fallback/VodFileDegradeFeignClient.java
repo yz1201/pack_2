@@ -1,6 +1,7 @@
-package cn.dbdj1201.edu.api;
+package cn.dbdj1201.edu.api.fallback;
 
 import cn.dbdj1201.common.utils.result.R;
+import cn.dbdj1201.edu.api.VodClient;
 import org.springframework.stereotype.Component;
 
 /**

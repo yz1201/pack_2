@@ -6,7 +6,6 @@ import cn.dbdj1201.common.utils.util.JwtInfo;
 import cn.dbdj1201.common.utils.util.JwtUtils;
 import cn.dbdj1201.edu.entity.EduComment;
 import cn.dbdj1201.edu.service.IEduCommentService;
-import cn.hutool.http.server.HttpServerRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +51,7 @@ public class EduCommentController {
         经典用远程调用，我请求头的token里存了用户的id，头像，昵称，在这里一下子全拿到了。我还去用户中心干几把？
          */
         log.info("前台评论来了-{}", comment);
-        JwtInfo jwtInfo = JwtUtils.getMemberIdByJWT(request);
+        JwtInfo jwtInfo = JwtUtils.getMemberInfoByJWT(request);
         this.commentService.writeComment(comment, jwtInfo);
         return R.success();
     }

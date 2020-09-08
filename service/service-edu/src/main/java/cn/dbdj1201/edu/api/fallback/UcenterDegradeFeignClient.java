@@ -1,6 +1,7 @@
-package cn.dbdj1201.edu.api;
+package cn.dbdj1201.edu.api.fallback;
 
 import cn.dbdj1201.common.utils.result.R;
+import cn.dbdj1201.edu.api.UcenterClient;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2020-09-07 21:43
  **/
 @Component
-public class UcenterDegradeFeignClient implements UcenterClient{
+public class UcenterDegradeFeignClient implements UcenterClient {
     @Override
     public R getMemberInfo(HttpServletRequest request) {
         return R.error().message("用户中心跨了，撤退！");

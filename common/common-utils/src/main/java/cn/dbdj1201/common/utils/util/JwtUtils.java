@@ -81,7 +81,7 @@ public class JwtUtils {
      * @param request
      * @return
      */
-    public static JwtInfo getMemberIdByJWT(HttpServletRequest request) {
+    public static JwtInfo getMemberInfoByJWT(HttpServletRequest request) {
         String jwtToken = request.getHeader("TOKEN");
         if (StringUtils.isEmpty(jwtToken)) {
             return null;

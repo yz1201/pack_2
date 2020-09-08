@@ -1,16 +1,14 @@
 package cn.dbdj1201.edu.service.impl;
 
 import cn.dbdj1201.common.service.exception.GOLException;
+import cn.dbdj1201.common.utils.ordervo.CourseWebVoOrder;
 import cn.dbdj1201.edu.entity.*;
 import cn.dbdj1201.edu.entity.frontvo.CourseFrontVo;
 import cn.dbdj1201.edu.entity.frontvo.CourseWebVo;
 import cn.dbdj1201.edu.entity.vo.CourseInfoVo;
 import cn.dbdj1201.edu.entity.vo.CoursePublishVo;
 import cn.dbdj1201.edu.mapper.EduCourseMapper;
-import cn.dbdj1201.edu.service.IEduChapterService;
-import cn.dbdj1201.edu.service.IEduCourseDescriptionService;
-import cn.dbdj1201.edu.service.IEduCourseService;
-import cn.dbdj1201.edu.service.IEduVideoService;
+import cn.dbdj1201.edu.service.*;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -45,6 +43,9 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private IEduChapterService chapterService;
+
+    @Autowired
+    private IEduTeacherService teacherService;
 
     @Override
     public String saveCourseInfo(CourseInfoVo courseInfoVo) {
@@ -221,5 +222,14 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         CourseWebVo courseWebVo = this.baseMapper.getCourseWebVo(courseId);
         log.info("课程webVo查询完毕-{}", courseWebVo);
         return courseWebVo;
+    }
+
+    @Override
+    public CourseWebVoOrder getCourseInfoOrderById(String courseId) {
+        CourseWebVoOrder order = new CourseWebVoOrder();
+        CourseWebVo courseWebVo = this.getCourseWebVo(courseId);
+        BeanUtil.copyProperties(courseWebVo, order);
+        log.info("Order课程信息查询完毕-{}", courseWebVo);
+        return order;
     }
 }
