@@ -25,7 +25,7 @@ import java.util.Map;
 @RequestMapping("/edu/front/teacher")
 @Slf4j
 @Api("讲师前台接口")
-@CrossOrigin
+//@CrossOrigin
 public class TeacherFrontController {
 
     @Autowired

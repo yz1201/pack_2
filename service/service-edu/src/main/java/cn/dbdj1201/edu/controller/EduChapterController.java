@@ -26,7 +26,7 @@ import java.util.List;
 @RequestMapping("/edu/chapter")
 @Slf4j
 @Api("课程章节模块")
-@CrossOrigin
+//@CrossOrigin
 public class EduChapterController {
 
     @Autowired

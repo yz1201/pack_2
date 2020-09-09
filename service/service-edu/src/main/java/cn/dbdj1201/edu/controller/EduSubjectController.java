@@ -29,7 +29,7 @@ import java.util.List;
 @RequestMapping("/edu/subject")
 @Api("课程分类模块")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class EduSubjectController {
 
     @Autowired

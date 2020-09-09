@@ -23,6 +23,7 @@
         btnDisabled: false
       }
     },
+    //钩子函数
     created() {
 
     },

@@ -1,0 +1,78 @@
+server:
+  port: 44444
+
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    #nacos配置，别忘了先在bootstrap.yml中配置
+    nacos:
+      server-addr: 47.94.4.93:8848
+    #网关配置
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          #服务路由小写
+          #lower-case-service-id: true
+      #设置路由id
+      routes:
+        #cms
+        - id: service-cms
+          uri: lb://service-cms
+          predicates:
+            - Path=/cms/**
+        #edu
+        - id: service-edu
+          uri: lb://service-edu
+          predicates:
+            - Path=/edu/**
+        #order
+        - id: service-order
+          uri: lb://service-order
+          predicates:
+            - Path=/order/**
+        #同属订单模块的支付模块
+        - id: order-paylog
+          uri: lb://service-order
+          predicates:
+            - Path=/payLog/**
+        # msm
+        - id: service-msm
+          uri: lb://service-msm
+          predicates:
+            - Path=/msm/**
+        # oss
+        - id: service-oss
+          uri: lb://service-oss
+          predicates:
+            - Path=/oss/**
+        # statistics
+        - id: service-statistics
+          uri: lb://service-statistics
+          predicates:
+            - Path=/statistics/**
+        # ucenter
+        - id: service-ucenter
+          uri: lb://service-ucenter
+          predicates:
+            - Path=/ucenter/member/**
+        # wx ucenter
+        - id: ucenter-wx
+          uri: lb://service-ucenter
+          predicates:
+            - Path=/api/ucenter/wx/**
+        # vod
+        - id: service-vod
+          uri: lb://service-vod
+          predicates:
+            - Path=/vod/**
+        # auth
+        - id: service-auth
+          uri: lb://service-auth
+          predicates:
+            - Path=/*/acl/**
+
+
+
+

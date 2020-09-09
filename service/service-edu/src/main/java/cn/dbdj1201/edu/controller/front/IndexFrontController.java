@@ -24,7 +24,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/edu/front")
 @Api("前台课程管理模块")
-@CrossOrigin
+//@CrossOrigin
 @Slf4j
 public class IndexFrontController {
 

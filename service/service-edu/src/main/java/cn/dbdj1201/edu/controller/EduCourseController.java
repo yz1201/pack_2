@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/edu/course")
 @Api("课程管理模块")
-@CrossOrigin
+//@CrossOrigin
 @Slf4j
 public class EduCourseController {
 

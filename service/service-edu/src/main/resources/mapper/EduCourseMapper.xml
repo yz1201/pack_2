@@ -48,7 +48,7 @@
 		WHERE ec.id = #{courseId}
     </select>
 
-    <select id="findAddCoursesAtSomeDay" resultMap="int">
+    <select id="findAddCoursesAtSomeDay" resultType="int">
 
 		SELECT
 			count( 1 )

@@ -30,7 +30,7 @@ import java.util.List;
 @RequestMapping("/edu/teacher")
 @Api("后台讲师管理模块")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class EduTeacherController {
 
     @Autowired

@@ -26,7 +26,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/edu/comment")
 @Api("前台课程评论模块")
-@CrossOrigin
+//@CrossOrigin
 @Slf4j
 public class EduCommentController {
 

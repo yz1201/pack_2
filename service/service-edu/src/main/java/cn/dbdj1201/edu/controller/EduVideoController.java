@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/edu/video")
 @Api("章节下小节模块")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class EduVideoController {
 
     @Autowired

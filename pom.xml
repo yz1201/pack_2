@@ -10,7 +10,8 @@
     <modules>
         <module>service</module>
         <module>common</module>
-        <module>service-statistics</module>
+        <module>canal-client</module>
+        <module>infrastructure</module>
     </modules>
 
     <packaging>pom</packaging>

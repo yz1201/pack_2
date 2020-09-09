@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/edu/user")
 @Api("讲师后台管理登录模块")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class EduLoginController {
 
     @ApiOperation("登录")
