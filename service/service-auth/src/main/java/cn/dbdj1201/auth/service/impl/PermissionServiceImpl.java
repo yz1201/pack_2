@@ -73,6 +73,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             rolePermission.setPermissionId(pid);
             return rolePermission;
         }).collect(Collectors.toList());
+        
         this.rolePermissionService.saveBatch(rolePermissions);
     }
 
