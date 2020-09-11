@@ -36,7 +36,7 @@ public class PermissionController {
     public R indexAllPermission() {
         log.info("获取全部权限列表");
         List<Permission> list = this.permissionService.queryAllMenu();
-        return R.success().data("children", list);
+        return R.success().data("permissions", list);
     }
 
     @ApiOperation(value = "递归删除权限菜单")

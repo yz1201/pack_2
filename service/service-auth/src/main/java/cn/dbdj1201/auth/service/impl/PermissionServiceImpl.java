@@ -54,14 +54,14 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         /*
         数据有效性的简单校验，权限不做校验，其他模块做严谨一点。
          */
-        if (StrUtil.isBlank(roleId)){
-            log.info("给{}角色分配权限,角色呢？",roleId);
-            throw  new GOLException(20001,"干嘛来了");
+        if (StrUtil.isBlank(roleId)) {
+            log.info("给{}角色分配权限,角色呢？", roleId);
+            throw new GOLException(20001, "干嘛来了");
         }
 
-        if (this.roleService.getById(roleId) == null){
-            log.info("给{}角色分配权限,角色呢？",roleId);
-            throw  new GOLException(20001,"干嘛来了");
+        if (this.roleService.getById(roleId) == null) {
+            log.info("给{}角色分配权限,角色呢？", roleId);
+            throw new GOLException(20001, "干嘛来了");
         }
 
         /*
@@ -73,7 +73,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             rolePermission.setPermissionId(pid);
             return rolePermission;
         }).collect(Collectors.toList());
-        
+
         this.rolePermissionService.saveBatch(rolePermissions);
     }
 
@@ -91,6 +91,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public List<Permission> queryAllMenu() {
         List<Permission> permissions = this.list(new QueryWrapper<Permission>().orderByDesc("id"));
+        log.info("permissions-{}", permissions);
         return buildPermissions(permissions);
     }
 
