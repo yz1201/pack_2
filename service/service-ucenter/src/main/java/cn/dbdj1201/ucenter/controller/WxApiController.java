@@ -124,9 +124,7 @@ public class WxApiController {
                 log.info("userInfo-{}", userInfo);
 
                 HashMap userInfoMap = gson.fromJson(userInfo, HashMap.class);
-
                 String nickname = (String) userInfoMap.get("nickname");
-
                 String headimgurl = (String) userInfoMap.get("headimgurl");
 
                 ucenterMember = new UcenterMember();

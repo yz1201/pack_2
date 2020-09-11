@@ -25,5 +25,5 @@ spring:
 msm:
   key-head: DBDJ1201
   key-mid-name: MSM
-  ali-key: LTAI4G84wKGBXUDgHKFHwzmm
-  ali-secret: 9Lyw4lKFohUqUvJIDyA4FVMmMfB6Dv
+  ali-key:
+  ali-secret:
